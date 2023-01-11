@@ -1,3 +1,11 @@
 @import "root";
 @import "~bootstrap/scss/bootstrap";
+
+body {
+    font-family: var($font-family-rg);
+    min-height: 100vh;
+    background-color: $primary;
+    color: $light;
+}
+
 @import "footer";

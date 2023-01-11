@@ -11,18 +11,18 @@
 					<h1 class="h1 text-center my-5">Registration</h1>
 					<div class="card p-5">
 						{{ form_start(registrationForm) }}
-						<div class="mb-5">
+						<div class="mb-5 text-dark">
 							{{ form_row(registrationForm.email) }}
 						</div>
-						<div class="mt-5">
+						<div class="mt-5 text-dark">
 							{{ form_row(registrationForm.plainPassword, {
                                 label: 'Password'
                             }) }}
 						</div>
 					</div>
 					<div class="bloc-btn mt-4 d-flex justify-content-between">
-						<a href="#" class="btn btn-lg btn-outline-dark">Return</a>
-						<button type="submit" class="btn btn-lg btn-warning">Register</button>
+						<a href="#" class="btn btn-lg btn-outline-light">Return</a>
+						<button type="submit" class="btn btn-lg btn-secondary">Register</button>
 						{{ form_end(registrationForm) }}
 					</div>
 				</div>
