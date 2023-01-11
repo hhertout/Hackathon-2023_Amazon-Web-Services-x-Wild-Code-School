@@ -37,6 +37,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 10)]
     private ?string $phoneNumber = null;
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Company $company = null;
 
     public function getId(): ?int
     {
@@ -107,7 +109,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
     public function getFirstname(): ?string
     {
         return $this->firstname;
@@ -136,10 +137,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->phoneNumber;
     }
-
     public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
 
         return $this;
     }
