@@ -31,6 +31,7 @@ class UserFixtures extends Fixture
         }
 
         $randomUser = new User();
+        $randomUser->setRoles(['ROLE_EMPLOYEE']);
         $randomUser->setEmail('user@gmail.com');
         $password = $this->passwordHasher->hashPassword($randomUser, 'password');
         $randomUser->setPassword($password);
@@ -38,6 +39,7 @@ class UserFixtures extends Fixture
         $manager->persist($randomUser);
 
         $admin = new User();
+        $randomUser->setRoles(['ROLE_ADMIN']);
         $admin->setEmail('admin@aws.com');
         $password = $this->passwordHasher->hashPassword($admin, 'admin');
         $admin->setPassword($password);
