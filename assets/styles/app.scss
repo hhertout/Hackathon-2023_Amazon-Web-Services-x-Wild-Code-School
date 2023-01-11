@@ -1,16 +1,20 @@
 @import "root";
 @import "~bootstrap/scss/bootstrap";
+@import "footer.scss";
 
 body {
     font-family: $font-family-rg !important;
-    min-height: 100vh;
     background-color: $primary;
     color: $light;
+    display: block;
+    margin: 0;
+}
+
+main {
+    min-height: 80vh;
 }
 
 h1 {
     font-family: $font-family-bd;
     font-weight: bold;
 }
-
-@import "footer";
