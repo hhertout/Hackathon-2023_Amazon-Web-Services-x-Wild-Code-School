@@ -50,6 +50,11 @@ class RegistrationFormType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
+                'placeholder' => 'Choose your company.',
+                'attr' => [
+                    'label' => 'Company',
+                    'class' => 'form-select',
+                ]
             ])
         ;
     }

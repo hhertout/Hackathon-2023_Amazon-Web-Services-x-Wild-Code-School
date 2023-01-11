@@ -45,6 +45,15 @@ class Vehicle
     #[ORM\OneToMany(mappedBy: 'vehicle', targetEntity: Reservation::class)]
     private Collection $reservations;
 
+    #[ORM\Column(length: 100)]
+    private ?string $type = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $gearbox = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $poster = null;
+    
     #[ORM\Column]
     private ?bool $isAvailable = null;
 
@@ -193,6 +202,41 @@ class Vehicle
             }
         }
 
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getGearbox(): ?string
+    {
+        return $this->gearbox;
+    }
+
+    public function setGearbox(string $gearbox): self
+    {
+        $this->gearbox = $gearbox;
+
+        return $this;
+    }
+
+    public function getPoster(): ?string
+    {
+        return $this->poster;
+    }
+
+    public function setPoster(?string $poster): self
+    {
+        $this->poster = $poster;
         return $this;
     }
 
