@@ -37,7 +37,7 @@ class Vehicle
     #[ORM\ManyToOne(inversedBy: 'vehicles')]
     private ?Company $company = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $autonomy = null;
 
     public function getId(): ?int
