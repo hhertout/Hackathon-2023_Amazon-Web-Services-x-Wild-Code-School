@@ -1,7 +1,7 @@
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a href="#" class="navbar-brand mb-0 h1">
+			<a href="/" class="navbar-brand mb-0 h1">
 				<img src="" alt="" class="d-inline-block align-text-top">
 				ACS - Amazon Car Services
 			</a>
@@ -11,12 +11,21 @@
 			<div class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#">Home</a>
+						<a class="nav-link active" aria-current="page" href="/">Home</a>
 					</li>
 				</ul>
-				<a class="nav-link" href="#">
-					Profil
-				</a>
+				{% if app.user %}
+					<a class="nav-link text-dark" href="#">
+						Profil
+					</a>
+					<a class="nav-link text-dark" href="/logout">
+						Logout
+					</a>
+				{% else %}
+					<a class="nav-link text-dark" href="/login">
+						Login
+					</a>
+				{% endif %}
 			</div>
 		</div>
 	</nav>
