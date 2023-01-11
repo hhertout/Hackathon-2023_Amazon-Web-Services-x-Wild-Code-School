@@ -23,6 +23,7 @@ class UserFixtures extends Fixture
 
         for ($i = 0; $i < self::NB_COMPANY; $i++) {
             $companyExecutive = new User();
+            $companyExecutive->setRoles(['ROLE_COMPANY']);
             $companyExecutive->setFirstname($faker->firstName());
             $companyExecutive->setLastname($faker->lastName());
             $companyExecutive->setPhoneNumber('0689324523');
