@@ -237,6 +237,8 @@ class Vehicle
     public function setPoster(?string $poster): self
     {
         $this->poster = $poster;
+        return $this;
+    }
 
     public function isIsAvailable(): ?bool
     {
