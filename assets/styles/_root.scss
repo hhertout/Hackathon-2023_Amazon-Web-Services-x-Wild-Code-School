@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Amazon-Ember bold";
+  src: local("AmazonEmber"), url("/assets/fonts/AmazonEmber_Bd.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Amazon-Ember light";
+  src: local("AmazonEmber"), url("/assets/fonts/AmazonEmber_Lt.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Amazon-Ember regular";
+  src: local("AmazonEmber"), url("/assets/fonts/AmazonEmber_Rg.ttf") format("truetype");
+}
+
+$font-family-rg: "Amazon-Ember regular", sans-serif;
+$font-family-bd: "Amazon-Ember bold", sans-serif;
+$font-family-lt: "Amazon-Ember light", sans-serif;
+
+$primary: #232F3E;
+$secondary: #FF9900;
+$tertiary: #3DE0E0;
+$light: #F2F2F2;
+$dark: #0f0f0f;
+
