@@ -26,6 +26,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $vehicle->setAutonomy(314);
+            $vehicle->setIsAvailable((bool)rand(0, 1));
 
             $manager->persist($vehicle);
         }
@@ -40,6 +41,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setIsKaput(false);
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
+            $vehicle->setIsAvailable((bool)rand(0, 1));
 
             $manager->persist($vehicle);
         }
@@ -54,6 +56,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setIsKaput(false);
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
+            $vehicle->setIsAvailable((bool)rand(0, 1));
 
             $manager->persist($vehicle);
         }
@@ -68,6 +71,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setIsKaput(false);
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
+            $vehicle->setIsAvailable((bool)rand(0, 1));
 
             $manager->persist($vehicle);
         }

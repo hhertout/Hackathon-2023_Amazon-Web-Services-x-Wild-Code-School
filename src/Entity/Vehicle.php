@@ -45,6 +45,9 @@ class Vehicle
     #[ORM\OneToMany(mappedBy: 'vehicle', targetEntity: Reservation::class)]
     private Collection $reservations;
 
+    #[ORM\Column]
+    private ?bool $isAvailable = null;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -189,6 +192,18 @@ class Vehicle
                 $reservation->setVehicle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsAvailable(): ?bool
+    {
+        return $this->isAvailable;
+    }
+
+    public function setIsAvailable(bool $isAvailable): self
+    {
+        $this->isAvailable = $isAvailable;
 
         return $this;
     }
