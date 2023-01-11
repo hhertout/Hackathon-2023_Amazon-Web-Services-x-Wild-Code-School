@@ -32,15 +32,42 @@ class VehicleFixtures extends Fixture
 
         for ($i = 0; $i < self::NB_VEHICLE_MODEL; $i++) {
             $vehicle = new Vehicle();
-            $vehicle->setBrand('Renault');
-            $vehicle->setModel('Kangoo');
-            $vehicle->setEnergy('Electric');
+            $vehicle->setBrand('Peugeot');
+            $vehicle->setModel('Partner');
+            $vehicle->setEnergy('Gasoline');
             $vehicle->setNbSeat(3);
             $vehicle->setIsShared(false);
             $vehicle->setIsKaput(false);
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
-            $vehicle->setAutonomy(314);
+
+            $manager->persist($vehicle);
+        }
+
+        for ($i = 0; $i < self::NB_VEHICLE_MODEL; $i++) {
+            $vehicle = new Vehicle();
+            $vehicle->setBrand('Peugeot');
+            $vehicle->setModel('308');
+            $vehicle->setEnergy('Gasoline');
+            $vehicle->setNbSeat(5);
+            $vehicle->setIsShared(false);
+            $vehicle->setIsKaput(false);
+            $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
+            $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
+
+            $manager->persist($vehicle);
+        }
+
+        for ($i = 0; $i < self::NB_VEHICLE_MODEL; $i++) {
+            $vehicle = new Vehicle();
+            $vehicle->setBrand('Renault');
+            $vehicle->setModel('Clio III');
+            $vehicle->setEnergy('Diesel');
+            $vehicle->setNbSeat(5);
+            $vehicle->setIsShared(false);
+            $vehicle->setIsKaput(false);
+            $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
+            $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
 
             $manager->persist($vehicle);
         }
