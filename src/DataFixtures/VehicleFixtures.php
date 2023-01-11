@@ -28,6 +28,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setAutonomy(314);
             $vehicle->setType('Utility');
             $vehicle->setGearbox('Automatic');
+            $vehicle->setIsAvailable((bool)rand(0, 1));
 
             $manager->persist($vehicle);
         }
@@ -44,6 +45,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $vehicle->setType('Utility');
             $vehicle->setGearbox('Manual');
+            $vehicle->setIsAvailable((bool)rand(0, 1));
 
             $manager->persist($vehicle);
         }
@@ -60,6 +62,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $vehicle->setType('Urban');
             $vehicle->setGearbox('Automatic');
+            $vehicle->setIsAvailable((bool)rand(0, 1));
 
             $manager->persist($vehicle);
         }
@@ -76,6 +79,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $vehicle->setType('Urban');
             $vehicle->setGearbox('Manual');
+            $vehicle->setIsAvailable((bool)rand(0, 1));
 
             $manager->persist($vehicle);
         }

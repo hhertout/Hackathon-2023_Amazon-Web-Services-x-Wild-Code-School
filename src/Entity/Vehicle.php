@@ -53,6 +53,9 @@ class Vehicle
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $poster = null;
+    
+    #[ORM\Column]
+    private ?bool $isAvailable = null;
 
     public function __construct()
     {
@@ -234,6 +237,15 @@ class Vehicle
     public function setPoster(?string $poster): self
     {
         $this->poster = $poster;
+
+    public function isIsAvailable(): ?bool
+    {
+        return $this->isAvailable;
+    }
+
+    public function setIsAvailable(bool $isAvailable): self
+    {
+        $this->isAvailable = $isAvailable;
 
         return $this;
     }
