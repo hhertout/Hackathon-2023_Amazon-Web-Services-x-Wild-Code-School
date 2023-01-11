@@ -21,22 +21,19 @@ class UserFixtures extends Fixture
         $randomUser = new User();
         $randomUser->setRoles(['ROLE_EMPLOYEE']);
         $randomUser->setEmail('user@gmail.com');
+        $randomUser->setFirstname('Chuck');
+        $randomUser->setLastname('Norris');
+        $randomUser->setPhoneNumber('0689324523');
         $password = $this->passwordHasher->hashPassword($randomUser, 'password');
         $randomUser->setPassword($password);
         $manager->persist($randomUser);
 
-        for ($i = 0 ; $i < self::NB_COMPANY ; $i++){
-            $company = new User();
-            $randomUser->setRoles(['ROLE_COMPANY']);
-            $company->setEmail('company_' . $i . '@gmail.com');
-            $password = $this->passwordHasher->hashPassword($company, 'password');
-            $company->setPassword($password);
-            $manager->persist($company);
-        }
-
         $admin = new User();
-        $randomUser->setRoles(['ROLE_ADMIN']);
+        $admin->setRoles(['ROLE_ADMIN']);
         $admin->setEmail('admin@aws.com');
+        $admin->setFirstname('The Real');
+        $admin->setLastname('Trivet');
+        $admin->setPhoneNumber('0665234512');
         $password = $this->passwordHasher->hashPassword($admin, 'admin');
         $admin->setPassword($password);
         $manager->persist($admin);
