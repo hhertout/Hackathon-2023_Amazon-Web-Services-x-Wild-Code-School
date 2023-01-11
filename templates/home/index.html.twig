@@ -16,4 +16,13 @@
         <li>Your template at <code><a href="{{ '/Users/hugueshertout/Desktop/hackathon/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
     </ul>
 </div>
+
+{{ form_start(searchForm) }}
+{{ form_end(searchForm) }}
+
+<ul>
+{% for vehicle in vehicles %}
+    <li>{{ vehicle.brand }} {{vehicle.energy}} {{vehicle.company.name}}</li>
+{% endfor %}
+</ul>
 {% endblock %}
