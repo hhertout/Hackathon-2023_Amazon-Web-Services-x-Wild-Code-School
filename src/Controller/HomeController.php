@@ -23,10 +23,27 @@ class HomeController extends AbstractController
         $form = $this->createForm(SearchFormType::class);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted()) {
+            $startDate = $form->getData()['startDate'];
+            $endDate = $form->getData()['endDate'];
+            $brand = $form->getData()['Brand'];
+            $energy = $form->getData()['energy'];
+
+            return $this->render('home/index.html.twig', [
+                'searchForm' => $form->createView(),
+                'vehicles' => $vehicleRepository->findBy([
+                    'company' => $user->getCompany(),
+                    'isAvailable' => true,
+                    'brand' => $brand,
+                    'energy' => $energy,
+                ])
+            ]);
+        }
+
         return $this->render('home/index.html.twig', [
             'searchForm' => $form->createView(),
             'controller_name' => 'HomeController',
-            'vehicles' => $vehicleRepository->findBy(['company' => $user->getCompany()])
+            'vehicles' => $vehicleRepository->findBy(['company' => $user->getCompany(), 'isAvailable' => true,])
         ]);
     }
 }
