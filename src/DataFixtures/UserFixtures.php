@@ -19,6 +19,7 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $randomUser = new User();
+        $randomUser->setRoles(['ROLE_EMPLOYEE']);
         $randomUser->setEmail('user@gmail.com');
         $password = $this->passwordHasher->hashPassword($randomUser, 'password');
         $randomUser->setPassword($password);
@@ -26,6 +27,7 @@ class UserFixtures extends Fixture
 
         for ($i = 0 ; $i < self::NB_COMPANY ; $i++){
             $company = new User();
+            $randomUser->setRoles(['ROLE_COMPANY']);
             $company->setEmail('company_' . $i . '@gmail.com');
             $password = $this->passwordHasher->hashPassword($company, 'password');
             $company->setPassword($password);
@@ -33,6 +35,7 @@ class UserFixtures extends Fixture
         }
 
         $admin = new User();
+        $randomUser->setRoles(['ROLE_ADMIN']);
         $admin->setEmail('admin@aws.com');
         $password = $this->passwordHasher->hashPassword($admin, 'admin');
         $admin->setPassword($password);
