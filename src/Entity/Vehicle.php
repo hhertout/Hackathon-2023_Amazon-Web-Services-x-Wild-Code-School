@@ -53,7 +53,7 @@ class Vehicle
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $poster = null;
-    
+
     #[ORM\Column]
     private ?bool $isAvailable = null;
 
@@ -234,9 +234,10 @@ class Vehicle
         return $this->poster;
     }
 
-    public function setPoster(?string $poster): self
+    public function setPoster(?string $poster)
     {
         $this->poster = $poster;
+        
         return $this;
     }
 
