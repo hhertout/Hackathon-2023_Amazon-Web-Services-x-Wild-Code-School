@@ -2,10 +2,15 @@
 @import "~bootstrap/scss/bootstrap";
 
 body {
-    font-family: var($font-family-rg);
+    font-family: $font-family-rg !important;
     min-height: 100vh;
     background-color: $primary;
     color: $light;
+}
+
+h1 {
+    font-family: $font-family-bd;
+    font-weight: bold;
 }
 
 @import "footer";
