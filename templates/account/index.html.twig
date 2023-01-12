@@ -19,10 +19,14 @@
 			<article>
 				<div>Your last reservation :</div>
 				<div>
+					{% if reservation is not null %}
 					<div>Reservation reference: {{ reservation.id }}</div>
 					<div>Vehicule reference: {{ reservation.vehicle.id }}</div>
 					<div>Departure : {{ reservation.rentedDate|date("m/d/Y H:i") }}</div>
 					<div>Arrival : {{ reservation.returnDate|date("m/d/Y H:i") }}</div>
+					{% else %}
+					<div>You haven't got any reservation.</div>
+					{% endif %}
 				</div>
 			</article>
 		</div>
