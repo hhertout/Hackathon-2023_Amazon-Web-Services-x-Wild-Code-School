@@ -223,7 +223,7 @@ class CompanyController extends AbstractController
             $vehicleRepository->save($vehicle, true);
 
 
-            return $this->redirectToRoute('app_company_home', ['company' => $vehicle->getCompany()->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_company_fleet', ['company' => $vehicle->getCompany()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('vehicle/edit.html.twig', [
