@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My account | Reservation
+{% endblock %}
+
+{% block content %}
+
+
+	<div class="container">
+		<a href="{{ path('app_account') }}" class="btn bg-secondary">Home</a>
+		<a href="{{ path('app_reservation') }}" class="btn bg-secondary">My Reservations</a>
+		<a href="{{ path('app_account_info') }}" class="btn bg-secondary">My Infos</a>
+	</div>
+	<div class="container bg-light text-dark mt-3 rounded">
+
+		<div class="d-flex justify-content-between align-items-center gap-3 py-3">
+			<h1>Your reservation
+			</h1>
+			<span class="badge bg-primary fs-6">Reference n°{{ reservation.id }}</span>
+		</div>
+		<p class="badge fs-6 bg-tertiary">Destination :{{ reservation.destination }}
+		</p>
+		<p></p>
+		<p>Departure :
+			{{ reservation.rentedDate|date("m/d/Y H:i") }}
+			Return :
+			{{ reservation.returnDate|date("m/d/Y H:i") }}</p>
+
+		<article>
+			<h2>Your vehicle :</h2>
+			<div>{{ vehicle.id }}</div>
+			<div>{{ vehicle.brand }}</div>
+			<div>{{ vehicle.model}}</div>
+			<div>{{ vehicle.energy}}</div>
+			<div>{{ vehicle.immatriculation}}</div>
+			<div>{{ vehicle.type}}</div>
+			<div>{{ vehicle.gearbox}}</div>
+		</article>
+	</div>
+</div></div>{% endblock %}

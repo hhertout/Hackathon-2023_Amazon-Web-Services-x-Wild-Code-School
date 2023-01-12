@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My account
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		<div>
+			<a href="{{ path('app_account') }}" class="btn bg-secondary active">Home</a>
+			<a href="{{ path('app_reservation') }}" class="btn bg-secondary">My Reservations</a>
+			<a href="{{ path('app_account_info') }}" class="btn bg-secondary">My Infos</a>
+		</div>
+
+		<div class="container bg-light text-dark mt-3 rounded">
+			<h1>Hello
+				{{ app.user.firstname }}, here's your dashboard</h1>
+
+			<article>
+				<div>Your last reservation :</div>
+				<div>
+					<div>Reservation reference: {{ reservation.id }}</div>
+					<div>Vehicule reference: {{ reservation.vehicle.id }}</div>
+					<div>Departure : {{ reservation.rentedDate|date("m/d/Y H:i") }}</div>
+					<div>Arrival : {{ reservation.returnDate|date("m/d/Y H:i") }}</div>
+				</div>
+			</article>
+		</div>
+
+
+	</div>
+{% endblock %}
