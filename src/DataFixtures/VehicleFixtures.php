@@ -10,7 +10,7 @@ use Faker\Factory;
 class VehicleFixtures extends Fixture
 {
     public const NB_VEHICLE_MODEL = 100;
-    public const ENERGY = ['Gazoline', 'Electic', 'Diesel'];
+    public const ENERGY = ['Gazoline', 'Electric', 'Diesel'];
 
     public function load(ObjectManager $manager): void
     {
@@ -88,6 +88,76 @@ class VehicleFixtures extends Fixture
 
             $manager->persist($vehicle);
         }
+
+
+
+        $vehicle = new Vehicle();
+        $vehicle->setBrand('Renault');
+        $vehicle->setModel('Kangoo');
+        $vehicle->setEnergy('Electric');
+        $vehicle->setNbSeat(3);
+        $vehicle->setIsShared(false);
+        $vehicle->setIsKaput(false);
+        $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
+        $vehicle->setAutonomy(314);
+        $vehicle->setType('Utility');
+        $vehicle->setGearbox('Automatic');
+        $vehicle->setIsAvailable((bool)rand(0, 1));
+        $vehicle->setCompany($this->getReference('company_' . '8'));
+        $this->addReference('Kangoo_' . 101, $vehicle);
+
+        $manager->persist($vehicle);
+
+        $vehicle = new Vehicle();
+        $vehicle->setBrand('Renault');
+        $vehicle->setModel('Kangoo');
+        $vehicle->setEnergy('Electric');
+        $vehicle->setNbSeat(3);
+        $vehicle->setIsShared(false);
+        $vehicle->setIsKaput(false);
+        $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
+        $vehicle->setAutonomy(314);
+        $vehicle->setType('Utility');
+        $vehicle->setGearbox('Automatic');
+        $vehicle->setIsAvailable((bool)rand(0, 1));
+        $vehicle->setCompany($this->getReference('company_' . '8'));
+        $this->addReference('Clio_' . 101, $vehicle);
+
+        $manager->persist($vehicle);
+
+        $vehicle = new Vehicle();
+        $vehicle->setBrand('Renault');
+        $vehicle->setModel('Kangoo');
+        $vehicle->setEnergy('Electric');
+        $vehicle->setNbSeat(3);
+        $vehicle->setIsShared(false);
+        $vehicle->setIsKaput(false);
+        $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
+        $vehicle->setAutonomy(314);
+        $vehicle->setType('Utility');
+        $vehicle->setGearbox('Automatic');
+        $vehicle->setIsAvailable((bool)rand(0, 1));
+        $vehicle->setCompany($this->getReference('company_' . '9'));
+        $this->addReference('Kangoo_' . 102, $vehicle);
+
+        $manager->persist($vehicle);
+
+        $vehicle = new Vehicle();
+        $vehicle->setBrand('Renault');
+        $vehicle->setModel('Kangoo');
+        $vehicle->setEnergy('Electric');
+        $vehicle->setNbSeat(3);
+        $vehicle->setIsShared(true);
+        $vehicle->setIsKaput(false);
+        $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
+        $vehicle->setAutonomy(314);
+        $vehicle->setType('Utility');
+        $vehicle->setGearbox('Automatic');
+        $vehicle->setIsAvailable((bool)rand(0, 1));
+        $vehicle->setCompany($this->getReference('company_' . '9'));
+        $this->addReference('Clio_' . 102, $vehicle);
+
+        $manager->persist($vehicle);
 
         $manager->flush();
     }

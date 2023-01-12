@@ -1,0 +1,47 @@
+@import "app.scss";
+
+
+
+.cardHome {
+    min-width: 20rem;
+    height: 26rem;
+}
+
+#cardGrid {
+    display: grid;
+    grid-template-areas: "a b b"
+                         "c c c"
+                         "d f g"
+                         "e e e";
+    grid-template-rows: 7rem 3rem 11rem 4rem;
+    grid-template-columns: 1fr 1fr 5rem;
+}
+
+#cardCar {
+    grid-area: a;
+}
+
+#cardLogo {
+    grid-area: b;
+}
+
+#cardBrand {
+    grid-area: c;
+}
+
+#cardEnergy {
+    grid-area: d;
+}
+
+#cardButton {
+    grid-area: e;
+}
+
+#cardGear {
+    grid-area: f;
+}
+
+#cardSeat {
+    grid-area: g;
+}
+

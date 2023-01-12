@@ -17,7 +17,14 @@ class CompanyController extends AbstractController
     #[Route('', name: 'app_company_home', methods: ['GET'])]
     public function index(Company $company, VehicleRepository $vehicleRepository): Response
     {
-        return $this->render('company/index.html.twig', [
+        return $this->render('company/fleet.html.twig', [
+            
+        ]);
+    }
+    #[Route('', name: 'app_company_fleet', methods: ['GET'])]
+    public function fleet(Company $company, VehicleRepository $vehicleRepository): Response
+    {
+        return $this->render('company/fleet.html.twig', [
             'company' => $company
         ]);
     }
@@ -39,6 +46,7 @@ class CompanyController extends AbstractController
         return $this->render('vehicle/new.html.twig', [
             'vehicle' => $vehicle,
             'form' => $form,
+            'company' => $company
         ]);
     }
 

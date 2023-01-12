@@ -1,0 +1,49 @@
+{% extends 'layoutUser.html.twig' %}
+
+{% block title %}My account
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		<div>
+			<a href="{{ path('app_account') }}" class="btn bg-secondary">Home</a>
+			<a href="{{ path('app_reservation') }}" class="btn bg-secondary active">My Reservations</a>
+			<a href="{{ path('app_account_info') }}" class="btn bg-secondary">My infos</a>
+		</div>
+		
+		
+		<div class="container bg-light text-dark mt-3 rounded">
+
+		<h1>Hello
+			{{ app.user.firstname }}, here are your reservations</h1>
+			{% if reservations is not empty %}
+				<table class="w-100 mt-5">
+					<tr class="rounded fw-bold">
+						<td class="p-2 bg-secondary">Ref</td>
+						<td class="p-2 bg-secondary">Rented Date</td>
+						<td class="p-2 bg-secondary">Return Date</td>
+						<td class="p-2 bg-secondary">Destination</td>
+						<td class="p-2 bg-secondary">Company</td>
+                        <td class="p-2 bg-secondary"></td>
+					</tr>
+					{% for reservation in app.user.reservations %}
+						<tr>
+							<td class="p-2">{{reservation.id}}</td>
+							<td class="p-2">{{reservation.rentedDate|date("m/d/Y H:i")}}</td>
+							<td class="p-2">{{reservation.returnDate|date("m/d/Y H:i")}}</td>
+							<td class="p-2">{{reservation.destination}}</td>
+							<td class="p-2">{{reservation.user.company.name}}</td>
+                            <td class="p-2"><a href="{{ path('app_reservation_id', { 'id': reservation.id }) }}" class="btn bg-success">Show</a></td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				<div>
+					<p>No reservation yet !</p>
+					<a href="{{ path('app_home') }}" class="btn bg-secondary">Reserve a car</a>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
