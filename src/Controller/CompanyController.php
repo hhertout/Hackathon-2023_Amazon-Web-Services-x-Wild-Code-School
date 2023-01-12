@@ -45,6 +45,17 @@ class CompanyController extends AbstractController
             'vehicles' => $vehicles
         ]);
     }
+    #[Route('/fleet/unavailable', name: 'app_company_fleet_unavailable', methods: ['GET'])]
+    public function fleetUnAvailable(Company $company, VehicleRepository $vehicleRepository): Response
+    {
+        $companyId = $company->getId();
+        $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'isAvailable' => false]);
+
+        return $this->render('company/fleetUnAvailable.html.twig', [
+            'company' => $company,
+            'vehicles' => $vehicles
+        ]);
+    }
     #[Route('/fleet/sharable', name: 'app_company_fleet_sharable', methods: ['GET'])]
     public function fleetSharable(Company $company, VehicleRepository $vehicleRepository): Response
     {
@@ -52,6 +63,17 @@ class CompanyController extends AbstractController
         $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'is_shared' => true]);
 
         return $this->render('company/fleetSharable.html.twig', [
+            'company' => $company,
+            'vehicles' => $vehicles
+        ]);
+    }
+    #[Route('/fleet/notsharable', name: 'app_company_fleet_notsharable', methods: ['GET'])]
+    public function fleetnotSharable(Company $company, VehicleRepository $vehicleRepository): Response
+    {
+        $companyId = $company->getId();
+        $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'is_shared' => false]);
+
+        return $this->render('company/fleetnotSharable.html.twig', [
             'company' => $company,
             'vehicles' => $vehicles
         ]);

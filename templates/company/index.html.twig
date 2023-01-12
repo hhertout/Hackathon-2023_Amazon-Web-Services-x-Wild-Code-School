@@ -10,10 +10,11 @@
 			<a href="{{ path('app_company_home', {'company': company.id}) }}" class="btn btn-lg bg-secondary active">Home</a>
 			<a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Fleet</a>
 			<a href="{{ path('app_company_request', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Request</a>
+			<a href="#" class="btn btn-lg bg-secondary">Statistics</a>
 		</div>
 		<div class="bg-light text-dark rounded-3 p-2">
 			<h1 class="h1 text-center my-5">Welcome on your dashboard, {{company.name}}</h1>
 
-			<div>Cars number : {{ numberOfCar }}</div>
+			<div>Cars number : {{ numberOfCar ?? 'Your fleet is empty' }}</div>
 		</div>
 	{% endblock %}
