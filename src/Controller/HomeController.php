@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Form\SearchFormType;
+use App\Repository\CompanyRepository;
 use App\Repository\VehicleRepository;
+use App\Service\CalculateDistance;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +26,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'app_home')]
-    public function index(Request $request, VehicleRepository $vehicleRepository): Response
+    public function index(Request $request, VehicleRepository $vehicleRepository, CalculateDistance $calculateDistance, CompanyRepository $companyRepository): Response
     {
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
@@ -34,7 +36,9 @@ class HomeController extends AbstractController
 
         $form = $this->createForm(SearchFormType::class);
         $form->handleRequest($request);
-
+        $nearCompaniesVehicles = [];
+        $otherNearCompagnies = [];
+        $otherNearCompagniesVehicles = [];
         if ($form->isSubmitted()) {
             $carId = [];
             $energyArray = ['Diesel', 'Electric', 'Gasoline'];
@@ -61,23 +65,35 @@ class HomeController extends AbstractController
             $brand = $form->getData()['Brand'];
             $energy = $form->getData()['energy'];
 
-            return $this->render('home/index.html.twig', [
-                'searchForm' => $form->createView(),
-                'vehicles' => $vehicleRepository->findBy([
-                    'id' => $carId,
-                    'company' => $user->getCompany(),
-                    'isAvailable' => true,
-                    'is_shared' => $sharable,
-                    'brand' => $brand ?? $brandArray,
-                    'energy' => $energy ?? $energyArray,
-                ])
-            ]);
-        }
+            if ($sharable === true) {
+                $nearCompanies = $calculateDistance->checkDistances($user->getCompany(), $companyRepository->findAll());
+                foreach ($nearCompanies as $nearCompagny) {
+                    if ($nearCompagny->getId() !== $user->getCompany()->getId()) {
+                        $otherNearCompagnies[] = $nearCompagny;
+                    }
+                }
 
+                foreach ($otherNearCompagnies as $otherNearCompagny) {
+                    $otherNearCompagniesVehicles = array_merge($otherNearCompagniesVehicles, $vehicleRepository->findBy([
+                        'company' => $otherNearCompagny,
+                        'is_shared' => true
+                    ]));
+                }
+            }
+            $vehicles = $vehicleRepository->findBy([
+                'id' => $carId,
+                'company' => $user->getCompany(),
+                'isAvailable' => true,
+                'brand' => $brand ?? $brandArray,
+                'energy' => $energy ?? $energyArray
+            ]);
+        } else {
+            $vehicles = $vehicleRepository->findBy(['company' => $user->getCompany(), 'isAvailable' => true,]);
+        }
         return $this->render('home/index.html.twig', [
             'searchForm' => $form->createView(),
-            'controller_name' => 'HomeController',
-            'vehicles' => $vehicleRepository->findBy(['company' => $user->getCompany(), 'isAvailable' => true,])
+            'vehicles' => $vehicles,
+            'otherNearCompagniesVehicles' => $otherNearCompagniesVehicles ?? []
         ]);
     }
 }
