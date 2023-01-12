@@ -15,10 +15,10 @@ class SearchFormType extends AbstractType implements FormTypeInterface
     {
         $builder
             ->add('startDate', DateTimeType::class, [
-                'label' => 'Starting Date'
+                'label' => 'Starting Date',
             ])
             ->add('endDate', DateTimeType::class, [
-                'label' => 'End Date'
+                'label' => 'End Date',
             ])
             ->add('Brand', ChoiceType::class, [
                 'choices' => [
