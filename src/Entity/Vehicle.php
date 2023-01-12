@@ -43,6 +43,7 @@ class Vehicle
     private ?int $autonomy = null;
 
     #[ORM\OneToMany(mappedBy: 'vehicle', targetEntity: Reservation::class)]
+    
     private Collection $reservations;
 
     #[ORM\Column(length: 100)]
