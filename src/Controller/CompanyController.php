@@ -20,14 +20,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CompanyController extends AbstractController
 {
     #[Route('/', name: 'app_company_home', methods: ['GET'])]
-    public function index(Company $company, VehicleRepository $vehicleRepository): Response
+    public function index(Company $company, VehicleRepository $vehicleRepository, ReservationRepository $reservationRepository): Response
     {
         $companyId = $company->getId();
         $carsCompany = $vehicleRepository->findBy(['company' => $companyId]);
+        $reservationNumber = count($reservationRepository->findBy(['vehicle' => $carsCompany]));
         $numberOfCar = count($carsCompany);
         return $this->render('company/index.html.twig', [
             'company' => $company,
-            'numberOfCar' => $numberOfCar
+            'numberOfCar' => $numberOfCar,
+            'reservationNumber' => $reservationNumber,
+            'sharedCar' => count($vehicleRepository->findBy(['company' => $companyId, 'is_shared' => true]))
         ]);
     }
     #[Route('/fleet', name: 'app_company_fleet', methods: ['GET'])]
