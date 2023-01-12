@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+	{{ form_start(searchForm) }}
 	<div id="searchGrid" class="container text-dark bg-white rounded-2 mt-5 py-3 justify-content-around">
 		<div id="searchArrow" class="align-self-center text-end">
 			<svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" fill="dark" class="bi bi-arrow-down" viewbox="0 0 16 16">
@@ -67,7 +68,7 @@
 			</div>
 		</div>
 		<div id="searchButton" class="text-center align-self-center">
-			<button id="search" class="btn btn-lg btn-secondary">Search</button>
+			<button type="submit" id="search" class="btn btn-lg btn-secondary">Search</button>
 			{{ form_end(searchForm) }}
 		</div>
 		<div id="searchClear" class="text-center align-self-center">

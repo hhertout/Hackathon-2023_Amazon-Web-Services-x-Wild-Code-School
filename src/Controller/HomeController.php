@@ -54,7 +54,6 @@ class HomeController extends AbstractController
             $startDate = $form->getData()['startDate'];
             $endDate = $form->getData()['endDate'];
             $sharable = $form->getData()['shared'];
-            dd($form->getData());
 
             if ($endDate && $startDate) {
                 //J'enregistre les dates en session pour les enregistrer dans l'order
@@ -109,7 +108,7 @@ class HomeController extends AbstractController
                 'brand' => $brand ?? $brandArray,
                 'energy' => $energy ?? $energyArray,
                 'gearbox' => $gearbox ?? $gearboxArray,
-                'door' => $doorNumber ?? $doorArray
+                'nbDoor' => $doorNumber ?? $doorArray
             ]);
         } else {
             $vehicles = $vehicleRepository->findBy(['company' => $user->getCompany(), 'isAvailable' => true,]);
