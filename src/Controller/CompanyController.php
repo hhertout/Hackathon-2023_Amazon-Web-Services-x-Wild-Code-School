@@ -39,6 +39,7 @@ class CompanyController extends AbstractController
         return $this->render('vehicle/new.html.twig', [
             'vehicle' => $vehicle,
             'form' => $form,
+            'company' => $company
         ]);
     }
 
