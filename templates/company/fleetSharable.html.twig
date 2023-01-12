@@ -8,7 +8,7 @@
 	<div class="container">
 		<div>
 			<a href="{{ path('app_company_home', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Home</a>
-			<a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn btn-lg bg-secondary  active">Fleet</a>
+			<a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn btn-lg bg-secondary active">Fleet</a>
             <a href="{{ path('app_company_request', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Request</a>
 		</div>
 
@@ -19,9 +19,9 @@
 		</div>
 		<div class="p-2">
         <div class="d-flex justify-content-center gap-1 my-3">
-            <a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn bg-secondary active">Show All</a>
+            <a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn bg-secondary">Show All</a>
             <a href={{ path('app_company_fleet_available', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles available</a>
-            <a href={{ path('app_company_fleet_sharable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles retable</a>
+            <a href={{ path('app_company_fleet_sharable', {'company': company.id}) }} class="btn bg-secondary active">Show your vehicles retable</a>
         </div>
             {% include './company/_carList.html.twig' %}
         </div>

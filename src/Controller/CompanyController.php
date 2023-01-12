@@ -11,25 +11,60 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/dashboard/{company}/')]
+#[Route('/dashboard/{company}')]
 class CompanyController extends AbstractController
 {
-    #[Route('', name: 'app_company_home', methods: ['GET'])]
+    #[Route('/', name: 'app_company_home', methods: ['GET'])]
     public function index(Company $company, VehicleRepository $vehicleRepository): Response
     {
-        return $this->render('company/fleet.html.twig', [
-            
+        $companyId = $company->getId();
+        $carsCompany = $vehicleRepository->findBy(['company' => $companyId]);
+        $numberOfCar = count($carsCompany);
+        return $this->render('company/index.html.twig', [
+            'company' => $company,
+            'numberOfCar' => $numberOfCar
         ]);
     }
-    #[Route('', name: 'app_company_fleet', methods: ['GET'])]
-    public function fleet(Company $company, VehicleRepository $vehicleRepository): Response
+    #[Route('/fleet', name: 'app_company_fleet', methods: ['GET'])]
+    public function fleet(Company $company): Response
     {
+        $vehicles = $company->getVehicles();
         return $this->render('company/fleet.html.twig', [
+            'company' => $company,
+            'vehicles' => $vehicles
+        ]);
+    }
+    #[Route('/fleet/available', name: 'app_company_fleet_available', methods: ['GET'])]
+    public function fleetAvailable(Company $company, VehicleRepository $vehicleRepository): Response
+    {
+        $companyId = $company->getId();
+        $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'isAvailable' => true]);
+
+        return $this->render('company/fleetAvailable.html.twig', [
+            'company' => $company,
+            'vehicles' => $vehicles
+        ]);
+    }
+    #[Route('/fleet/sharable', name: 'app_company_fleet_sharable', methods: ['GET'])]
+    public function fleetSharable(Company $company, VehicleRepository $vehicleRepository): Response
+    {
+        $companyId = $company->getId();
+        $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'is_shared' => true]);
+
+        return $this->render('company/fleetSharable.html.twig', [
+            'company' => $company,
+            'vehicles' => $vehicles
+        ]);
+    }
+    #[Route('/request', name: 'app_company_request', methods: ['GET'])]
+    public function request(Company $company): Response
+    {
+        return $this->render('company/reservationRequest.html.twig', [
             'company' => $company
         ]);
     }
 
-    #[Route('vehicle/new', name: 'app_vehicle_new', methods: ['GET', 'POST'])]
+    #[Route('/vehicle/new', name: 'app_vehicle_new', methods: ['GET', 'POST'])]
     public function new(Request $request, VehicleRepository $vehicleRepository, Company $company): Response
     {
         $vehicle = new Vehicle();

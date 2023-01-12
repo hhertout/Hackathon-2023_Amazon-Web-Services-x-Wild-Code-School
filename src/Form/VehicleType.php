@@ -34,8 +34,22 @@ class VehicleType extends AbstractType implements FormTypeInterface
                 ]
             )
             ->add('nbSeat', IntegerType::class)
-            ->add('is_shared', RadioType::class)
-            ->add('is_kaput', RadioType::class)
+            ->add('is_shared', ChoiceType::class, [
+                'choices' => [
+                    'No' => false,
+                    'Yes' => true,
+                ],
+                'multiple' => false,
+                'expanded' => false,
+            ])
+            ->add('is_kaput', ChoiceType::class, [
+                'choices' => [
+                    'No' => false,
+                    'Yes' => true,
+                ],
+                'multiple' => false,
+                'expanded' => false,
+            ])
             ->add('immatriculation', TextType::class)
             ->add('autonomy', IntegerType::class)
             ->add(
@@ -65,7 +79,14 @@ class VehicleType extends AbstractType implements FormTypeInterface
                 ]
             )
             ->add('poster')
-            ->add('isAvailable', RadioType::class);
+            ->add('isAvailable', ChoiceType::class, [
+                'choices' => [
+                    'No' => false,
+                    'Yes' => true,
+                ],
+                'multiple' => false,
+                'expanded' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
