@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
+{% block title %}{{parent()}}| Your fleet
 {% endblock %}
 
-{% block body %}
-	<main>
-		<h1>Your fleet</h1>
-		<button class="btn btn-secondary text-light fw-bold">Add you vehicle</button>
-		<div class="bg-light rounded-4">
-			<table class="text-dark">
-				<thead>
+{% block content %}
+	<div class="container">
+		<h1 class="h1 text-center my-5">Your fleet</h1>
+		<button class="btn btn-secondary text-light fw-bold mb-2">Add you vehicle</button>
+		<div class="bg-light rounded-3 p-2">
+			<table class="text-dark w-100">
+				<thead class="border-bottom">
 					<tr>
 						<th>Plate number</th>
 						<th>Model</th>
@@ -24,14 +24,14 @@
 						<td>The table body</td>
 						<td>with two columns</td>
 						<td>
-							<button class="btn">Edit</button>
+							<button class="btn btn-lg btn-warning w-100">Edit</button>
 						</td>
 						<td>
-							<button class="btn">Delete</button>
+							<button class="btn btn-lg btn-danger w-100">Delete</button>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-	</main>
+	</div>
 {% endblock %}
