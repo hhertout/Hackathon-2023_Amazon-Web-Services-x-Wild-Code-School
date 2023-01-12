@@ -118,9 +118,9 @@
 									<p class="mt-3 fs-5">{{vehicle.nbDoor}}</p>
 								</div>
 								<div id="cardButton">
-									<button class="btn btn-lg btn-secondary w-75" type="submit" href="/">
+									<a class="btn btn-lg btn-secondary w-75" type="submit" href="{{path('app_show', {'vehicle': vehicle.id})}}">
 										Book
-									</button>
+									</a>
 								</div>
 							</div>
 						</div>
