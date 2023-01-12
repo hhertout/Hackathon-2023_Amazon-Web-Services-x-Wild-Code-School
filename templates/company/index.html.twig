@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}}| Your fleet
+{% block title %}
+	{{parent()}}| Your fleet
 {% endblock %}
 
 {% block content %}
 	<div class="container">
 		<h1 class="h1 text-center my-5">Your fleet</h1>
-		<button class="btn btn-secondary text-light fw-bold mb-2">Add you vehicle</button>
+		<div class="d-flex justify-content-end">
+			<button class="btn btn-secondary text-light fw-bold mb-2">Add you vehicle</button>
+		</div>
 		<div class="bg-light rounded-3 p-2">
 			<table class="text-dark w-100">
 				<thead class="border-bottom">
