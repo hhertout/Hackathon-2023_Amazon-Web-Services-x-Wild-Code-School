@@ -144,6 +144,8 @@ class HomeController extends AbstractController
             }
 
             $reservationRepository->save($reservation, true);
+            $session->remove('vehicleRentDateStart');
+            $session->remove('vehicleRentEndDate');
 
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
