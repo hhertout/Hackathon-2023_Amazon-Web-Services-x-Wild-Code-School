@@ -13,21 +13,32 @@
 		<div class="bg-light rounded-3 p-2">
 			<table class="text-dark w-100">
 				<thead class="border-bottom">
-					{% for vehicle in company.vehicles %}
-						<tr>
-							<th>Plate number</th>
-							<th>Model</th>
-							<th>Unavailable</th>
-							<th>Shareable</th>
-						</tr>
-					</thead>
-				</thead>
-				<tbody>
+
 					<tr>
+						<th>Plate number</th>
+						<th>Model</th>
+						<th>Unavailable</th>
+						<th>Shareable</th>
+					</tr>
+				</thead>
+			</thead>
+			<tbody>
+				<tr>
+					{% for vehicle in company.vehicles %}
 						<td>{{vehicle.immatriculation}}</td>
 						<td>{{vehicle.model}}</td>
-						<td>{{vehicle.isAvailable}}</td>
-						<td>{{vehicle.isShared}}</td>
+						{% if vehicle.isAvailable is same as(1) %}
+							<td class="text-success">{{vehicle.isAvailable}}</td>
+						{% else  %}
+							<td class="text-danger">Vehicle not available
+							</td>
+						{% endif  %}
+						{% if vehicle.isShared is same as(1)   %}
+							<td class="text-danger">Vehicle shared</td>
+						{% else  %}
+							<td class="text-success">Vehicle not shared
+							</td>
+						{% endif  %}
 						<td>
 							<a class="btn btn-secondary" href="{{ path('app_vehicle_edit', {'company' : company.id,'vehicle': vehicle.id}) }}">Edit</a>
 						</td>
