@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicle
+{% endblock %}
+
+{% block content %}
+	<h1>Vehicle</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ vehicle.id }}</td>
+			</tr>
+			<tr>
+				<th>Brand</th>
+				<td>{{ vehicle.brand }}</td>
+			</tr>
+			<tr>
+				<th>Model</th>
+				<td>{{ vehicle.model }}</td>
+			</tr>
+			<tr>
+				<th>Energy</th>
+				<td>{{ vehicle.energy }}</td>
+			</tr>
+			<tr>
+				<th>NbSeat</th>
+				<td>{{ vehicle.nbSeat }}</td>
+			</tr>
+			<tr>
+				<th>Is_shared</th>
+				<td>{{ vehicle.isShared ? 'Yes' : 'No' }}</td>
+			</tr>
+			<tr>
+				<th>Is_kaput</th>
+				<td>{{ vehicle.isKaput ? 'Yes' : 'No' }}</td>
+			</tr>
+			<tr>
+				<th>Immatriculation</th>
+				<td>{{ vehicle.immatriculation }}</td>
+			</tr>
+			<tr>
+				<th>Autonomy</th>
+				<td>{{ vehicle.autonomy }}</td>
+			</tr>
+			<tr>
+				<th>Type</th>
+				<td>{{ vehicle.type }}</td>
+			</tr>
+			<tr>
+				<th>Gearbox</th>
+				<td>{{ vehicle.gearbox }}</td>
+			</tr>
+			<tr>
+				<th>Poster</th>
+				<td>{{ vehicle.poster }}</td>
+			</tr>
+			<tr>
+				<th>IsAvailable</th>
+				<td>{{ vehicle.isAvailable ? 'Yes' : 'No' }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_company_home', {'company': vehicle.company.id}) }}">back to list</a>
+
+	<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
+
+	{{ include('vehicle/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,5 +1,7 @@
 @import "root";
 @import "~bootstrap/scss/bootstrap";
+@import "footer";
+@import "home";
 
 body {
     font-family: $font-family-rg !important;
@@ -17,6 +19,3 @@ h1 {
     font-family: $font-family-bd;
     font-weight: bold;
 }
-
-@import "footer";
-@import "home";
