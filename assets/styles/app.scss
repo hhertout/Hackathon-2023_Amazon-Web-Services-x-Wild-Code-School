@@ -11,6 +11,7 @@ body {
 
 main {
     min-height: 80vh;
+    padding-block-start: 5rem;
 }
 
 h1 {
@@ -19,4 +20,5 @@ h1 {
 }
 
 @import "footer";
-@import "home";
+
+
