@@ -155,7 +155,7 @@ class CompanyController extends AbstractController
             'labels' => ['Vehicles In Maintenance (%)', 'Vehicles In Service (%)'],
             'datasets' => [
                 [
-                    'label' => 'Kaput',
+                    'label' => 'In Maintenance',
                     'backgroundColor' => [
                         'red',
                         'green'
@@ -174,24 +174,81 @@ class CompanyController extends AbstractController
         ]);
     }
     #[Route('/reservations-statistics', name: 'app_company_reserv_statistic', methods: ['GET'])]
-    public function statisticsReservation(Company $company, ChartBuilderInterface $chartBuilder): Response
+    public function statisticsReservation(Company $company, ChartBuilderInterface $chartBuilder, ReservationRepository $reservationRepository): Response
     {
+        $dateTime = new DateTime();
+        $dateTime = $dateTime->format('M-Y');
+        $dateTime1last = new DateTime('-1 month');
+        $dateTime1last = $dateTime1last->format('M-Y');
+        $dateTime2last = new DateTime('-2 month');
+        $dateTime2last = $dateTime2last->format('M-Y');
+        $dateTime3last = new DateTime('-3 month');
+        $dateTime3last = $dateTime3last->format('M-Y');
+        $dateTime4last = new DateTime('-4 month');
+        $dateTime4last = $dateTime4last->format('M-Y');
+        $dateTime5last = new DateTime('-5 month');
+        $dateTime5last = $dateTime5last->format('M-Y');
+        $dateTime6last = new DateTime('-6 month');
+        $dateTime6last = $dateTime6last->format('M-Y');
+        $dateTime7last = new DateTime('-7 month');
+        $dateTime7last = $dateTime7last->format('M-Y');
+        $dateTime8last = new DateTime('-8 month');
+        $dateTime8last = $dateTime8last->format('M-Y');
+        $dateTime9last = new DateTime('-9 month');
+        $dateTime9last = $dateTime9last->format('M-Y');
+        $dateTime10last = new DateTime('-10 month');
+        $dateTime10last = $dateTime10last->format('M-Y');
+        $dateTime11last = new DateTime('-11 month');
+        $dateTime11last = $dateTime11last->format('M-Y');
+        $dateTime12last = new DateTime('-12 month');
+        $dateTime12last = $dateTime12last->format('M-Y');
+
+        dump(count($reservationRepository->findBy(['rentedDate' => new DateTime('-2 month')])));
+
         $chartReservation = $chartBuilder->createChart(Chart::TYPE_BAR);
         $chartReservation->setData([
-            'labels' => ['Vehicles Available (%)', 'Vehicles Not Available (%)'],
+            'labels' => [
+                $dateTime,
+                $dateTime1last, 
+                $dateTime2last,
+                $dateTime3last,
+                $dateTime4last,
+                $dateTime5last,
+                $dateTime6last,
+                $dateTime7last,
+                $dateTime8last,
+                $dateTime9last,
+                $dateTime10last,
+                $dateTime11last,
+                $dateTime12last,
+            ],
             'datasets' => [
                 [
-                    'label' => 'Available',
+                    'label' => ['Number of reservations'],
                     'backgroundColor' => [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 205, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(201, 203, 207, 0.2)'
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(255, 159, 64, 0.8)',
+                        'rgba(255, 205, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(153, 102, 255, 0.8)',
+                        'rgba(201, 203, 207, 0.8)'
                     ],
-                    'data' => [],
+                    'data' => [
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime()])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-1 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-2 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-3 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-4 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-5 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-6 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-7 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-8 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-9 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-10 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-11 month')])),
+                        count($reservationRepository->findBy(['rentedDate' => new DateTime('-12 month')])),
+                    ],
                     "hoverOffset" => 8
                 ],
             ],
