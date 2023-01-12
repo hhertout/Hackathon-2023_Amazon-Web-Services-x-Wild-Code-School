@@ -9,7 +9,7 @@ use Faker\Factory;
 
 class VehicleFixtures extends Fixture
 {
-    public const NB_VEHICLE_MODEL = 5;
+    public const NB_VEHICLE_MODEL = 20;
 
     public function load(ObjectManager $manager): void
     {
@@ -24,11 +24,12 @@ class VehicleFixtures extends Fixture
             $vehicle->setIsShared(false);
             $vehicle->setIsKaput(false);
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
-            $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $vehicle->setAutonomy(314);
             $vehicle->setType('Utility');
             $vehicle->setGearbox('Automatic');
             $vehicle->setIsAvailable((bool)rand(0, 1));
+            $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
+            $this->addReference('Kangoo_' . $i, $vehicle);
 
             $manager->persist($vehicle);
         }

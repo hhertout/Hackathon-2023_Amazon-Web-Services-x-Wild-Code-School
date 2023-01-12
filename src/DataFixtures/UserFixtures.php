@@ -43,6 +43,7 @@ class UserFixtures extends Fixture
         $password = $this->passwordHasher->hashPassword($randomUser, 'password');
         $randomUser->setPassword($password);
         $randomUser->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
+        $this->addReference('randomUser_1', $randomUser);
         $manager->persist($randomUser);
 
         $admin = new User();

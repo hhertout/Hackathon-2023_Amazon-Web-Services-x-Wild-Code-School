@@ -22,6 +22,7 @@ class SearchFormType extends AbstractType implements FormTypeInterface
             ])
             ->add('Brand', ChoiceType::class, [
                 'choices' => [
+                    'All' => null,
                     'Peugeot' => 'Peugeot',
                     'Citroën' => 'Citroën',
                     'Renault' => 'Renault',
@@ -37,17 +38,20 @@ class SearchFormType extends AbstractType implements FormTypeInterface
                     'DS' => 'DS',
                 ],
                 'attr' => [
-                    'label' => 'Brand'
-                ]
+                    'label' => 'Brand',
+                ],
+                'required'   => false,
             ])
             ->add('energy', ChoiceType::class, [
                 'choices' => [
-                    'diesel' => 'diesel',
-                    'electric' => 'electric',
-                    'gazoline' => 'gasoline'
+                    'All' => null,
+                    'Diesel' => 'Diesel',
+                    'Electric' => 'Electric',
+                    'Gasoline' => 'gasoline'
                 ],
                 'multiple' => false,
                 'expanded' => false,
+                'required'   => false,
             ]);
     }
     public function configureOptions(OptionsResolver $resolver): void
