@@ -66,7 +66,7 @@ class UserFixtures extends Fixture
         $admin->setPhoneNumber('0665234512');
         $password = $this->passwordHasher->hashPassword($admin, 'admin');
         $admin->setPassword($password);
-        $admin->setCompany($this->getReference('company_0'));
+        $admin->setCompany($this->getReference('company_8'));
         $manager->persist($admin);
 
         $manager->flush();

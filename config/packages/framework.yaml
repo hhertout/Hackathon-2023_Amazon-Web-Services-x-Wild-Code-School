@@ -5,13 +5,6 @@ framework:
   http_method_override: false
   handle_all_throwables: true
 
-  http_client:
-    scoped_clients:
-      heremap.client:
-        base_uri: "https://geocode.search.hereapi.com/v1/geocode"
-        headers:
-          Content-Type: "application/json"
-
   # Enables session support. Note that the session will ONLY be started if you read or write from it.
   # Remove or comment this section to explicitly disable session support.
   session:
