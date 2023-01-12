@@ -35,6 +35,7 @@ class Company
 
     #[ORM\Column]
     private ?float $longitude = null;
+    
 
     public function __construct()
     {
