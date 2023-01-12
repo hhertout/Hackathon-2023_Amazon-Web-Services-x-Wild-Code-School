@@ -1,7 +1,4 @@
-footer {
-    min-height: 4rem;
-    a{
-        text-decoration: none;
-        color: $dark;
-    }
+.contactFooter {
+    --margin: 9rem;
+    margin-top: var(--margin) ;
 }
