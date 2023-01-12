@@ -10,6 +10,7 @@
 			<a href="{{ path('app_company_home', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Home</a>
 			<a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn btn-lg bg-secondary  active">Fleet</a>
             <a href="{{ path('app_company_request', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Request</a>
+			<a href="{{ path('app_company_statistic', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Statistics</a>
 		</div>
 
         <div class="container bg-light text-dark rounded p-2">
@@ -17,7 +18,7 @@
 		<div class="d-flex justify-content-end">
 			<a class="btn btn-secondary text-light fw-bold" href="{{ path('app_vehicle_new', {'company' : company.id}) }}">Add a vehicle</a>
 		</div>
-		<div class="p-2">
+		<div class="p-2 bloc-funnel">
         <div class="d-flex justify-content-center gap-1 my-3">
             <a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn bg-secondary">Show All</a>
             <a href={{ path('app_company_fleet_available', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles available</a>

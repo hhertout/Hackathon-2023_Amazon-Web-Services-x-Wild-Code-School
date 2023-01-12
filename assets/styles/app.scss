@@ -1,6 +1,8 @@
 @import "root";
 @import "~bootstrap/scss/bootstrap";
 @import "footer";
+@import "navbar";
+@import "fleet";
 
 body {
     font-family: $font-family-rg !important;
@@ -12,7 +14,7 @@ body {
 
 main {
     min-height: 80vh;
-    padding-block-start: 5rem;
+    margin-top: 2.5rem;
 }
 
 h1 {
@@ -27,3 +29,4 @@ h2 {
 .bg-tertiary {
     background-color: $tertiary;
 }
+
