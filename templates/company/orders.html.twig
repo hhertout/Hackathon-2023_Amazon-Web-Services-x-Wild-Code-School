@@ -1,7 +1,7 @@
 {% extends 'layoutUser.html.twig' %}
 
 {% block title %}
-	{{parent()}}| Your fleet
+	{{parent()}}| Orders
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
 					<span class="mx-2">Home</span>
 				</div>
 			</a>
-			<a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn btn-lg bg-secondary  active">
+			<a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn btn-lg bg-secondary">
 				<div class="d-flex align-items-center">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-car-front-fill" viewbox="0 0 16 16">
 						<path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17 1.247 0 3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
@@ -31,7 +31,7 @@
 					<span class="mx-2">Request</span>
 				</div>
 			</a>
-			<a href="{# {{ path('app_company_orders', {'company': company.id}) }} #}" class="btn btn-lg bg-secondary">
+			<a href="{# {{ path('app_company_orders', {'company': company.id}) }} #}" class="btn btn-lg bg-secondary active">
 				<div class="d-flex align-items-center">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-task" viewbox="0 0 16 16">
 						<path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
@@ -51,21 +51,46 @@
 				</div>
 			</a>
 		</div>
-
-        <div class="container bg-light text-dark rounded p-2">
-		<h1 class="h1 text-center my-5">Your fleet</h1>
-		<div class="d-flex justify-content-end">
-			<a class="btn btn-secondary text-light fw-bold" href="{{ path('app_vehicle_new', {'company' : company.id}) }}">Add a vehicle</a>
+		<div class="bg-light text-dark rounded-3 p-2">
+			<h1 class="h1 text-center my-5">Waiting orders</h1>
+			<table class="w-100 text-center">
+				<thead class="border-bottom">
+					<tr class="bg-primary text-light">
+						<th class="p-2">Immatriculation</th>
+						<th class="p-2">Model</th>
+						<th class="p-2">Ordered by</th>
+						<th class="p-2">Company</th>
+						<th class="p-2">Start</th>
+						<th class="p-2">End</th>
+						<th class="p-2">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for reservation in reservations %}
+						<tr>
+							<td>{{reservation.vehicle.immatriculation}}</td>
+							<td>{{reservation.vehicle.model}}</td>
+							<td>{{reservation.user.firstname ~ ' ' ~ reservation.user.lastname}}</td>
+							<td>{{reservation.user.company.name}}</td>
+							<td>{{reservation.rentedDate|date('Y-m-d')}}</td>
+							<td>{{reservation.returnDate|date('Y-m-d')}}</td>
+							<td>
+								{% if reservation.state is same as(true) %}
+									<div class="badge bg-success">Order approved</div>
+								{% elseif reservation.state is same as(false) %}
+									<div class="badge bg-danger">Order denied</div>
+								{% else %}
+									<form id="validation" action="" method="POST">
+										<input class="btn btn-success" name="validate" type="submit" value="Validate">
+										<input name="reservation-id" type="hidden" value="{{reservation.id}}">
+										<input class="btn btn-danger" name="reject" type="submit" value="Reject">
+									</form>
+								{% endif %}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
-		<div class="p-2 bloc-funnel">
-        <div class="d-flex justify-content-center gap-1 my-3">
-            <a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn bg-secondary">Show All</a>
-            <a href={{ path('app_company_fleet_available', {'company': company.id}) }} class="btn bg-secondary active">Show your vehicles available</a>
-			<a href={{ path('app_company_fleet_unavailable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles unavailable</a>
-            <a href={{ path('app_company_fleet_sharable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles rentable</a>
-			<a href={{ path('app_company_fleet_notsharable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles not rentable</a>
-        </div>
-            {% include './company/_carList.html.twig' %}
-        </div>
 	</div>
 {% endblock %}
