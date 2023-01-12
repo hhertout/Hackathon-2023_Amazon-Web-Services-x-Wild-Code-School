@@ -4,22 +4,29 @@ namespace App\Form;
 
 use App\Entity\Vehicle;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
 
 class VehicleType extends AbstractType implements FormTypeInterface
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('brand', TextType::class)
-            ->add('model', TextType::class)
+            ->add('brand', TextType::class,[
+                'attr' => [
+                    'class' => 'form-control mb-3'
+                ]
+            ])
+            ->add('model', TextType::class,[
+                'attr' => [
+                    'class' => 'form-control mb-3 mb-3'
+                ]
+            ])
             ->add(
                 'energy',
                 ChoiceType::class,
@@ -31,13 +38,36 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     ],
                     'multiple' => false,
                     'expanded' => false,
+                    'attr' => [
+                        'class' => 'form-select mb-3',
+                    ]
                 ]
             )
-            ->add('nbSeat', IntegerType::class)
-            ->add('is_shared', RadioType::class)
-            ->add('is_kaput', RadioType::class)
-            ->add('immatriculation', TextType::class)
-            ->add('autonomy', IntegerType::class)
+            ->add('nbSeat', IntegerType::class,[
+                'attr' => [
+                    'class' => 'form-control mb-3'
+                ]
+            ])
+            ->add('is_shared', CheckboxType::class, [
+                'attr' => [
+                    'class' => 'form-check-input mx-2 mb-3',
+                ]
+            ])
+            ->add('is_kaput', CheckboxType::class, [
+                'attr' => [
+                    'class' => 'form-check-input mx-2 mb-3',
+                ]
+            ])
+            ->add('immatriculation', TextType::class,[
+                'attr' => [
+                    'class' => 'form-control mb-3'
+                ]
+            ])
+            ->add('autonomy', IntegerType::class,[
+                'attr' => [
+                    'class' => 'form-control mb-3'
+                ]
+            ])
             ->add(
                 'type',
                 ChoiceType::class,
@@ -50,6 +80,9 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     ],
                     'multiple' => false,
                     'expanded' => false,
+                    'attr' => [
+                        'class' => 'form-select mb-3',
+                    ]
                 ]
             )
             ->add(
@@ -62,10 +95,21 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     ],
                     'multiple' => false,
                     'expanded' => false,
+                    'attr' => [
+                        'class' => 'form-select mb-3',
+                    ]
                 ]
             )
-            ->add('poster')
-            ->add('isAvailable', RadioType::class);
+            ->add('poster', TextType::class,[
+                'attr' => [
+                    'class' => 'form-control mb-3'
+                ]
+            ])
+            ->add('isAvailable', CheckboxType::class, [
+                'attr' => [
+                    'class' => 'form-check-input mx-2 mb-4',
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
