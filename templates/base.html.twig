@@ -7,7 +7,10 @@
 				Amazon Car Services
 			{% endblock %}
 		</title>
-		<link rel="icon" href="/assets/images/icons/favicons/favicon.ico">
+		<link rel="icon" href="{{asset('build/images/icons/favicons/favicon.ico')}}">
+		<link rel="icon" href="{{asset('build/images/icons/favicons/favicon-16x16.png')}}" type="image/png" sizes="16x16">
+		<link rel="icon" href="{{asset('build/images/icons/favicons/favicon-32x32.png')}}" type="image/png" sizes="32x32">
+		<link rel="apple-touch-icon" href="{{asset('build/images/icons/favicons/apple-touch-icon.png')}}">
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
