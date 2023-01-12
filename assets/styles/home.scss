@@ -10,9 +10,9 @@
 #cardGrid {
     display: grid;
     grid-template-areas: "a b b"
-                         "c c c"
-                         "d f g"
-                         "e e e";
+        "c c c"
+        "d f g"
+        "e e e";
     grid-template-rows: 7rem 3rem 11rem 4rem;
     grid-template-columns: 1fr 1fr 5rem;
 }
@@ -41,7 +41,120 @@
     grid-area: f;
 }
 
-#cardSeat {
+#cardSeat {
     grid-area: g;
 }
 
+
+#searchGrid {
+    display: grid;
+    grid-template-areas: "a b c d e f g h";
+
+    grid-template-rows: 1fr;
+    grid-template-columns: 3rem 15rem 8rem 8rem 8rem 8rem 15rem 10rem;
+}
+
+#searchArrow {
+    grid-area: a;
+}
+
+#searchDate {
+    grid-area: b;
+}
+
+#searchBrand {
+    grid-area: c;
+}
+
+#searchEnergy {
+    grid-area: d;
+}
+
+#searchGear {
+    grid-area: e;
+}
+
+#searchSeat {
+    grid-area: f;
+}
+
+#searchButton {
+    grid-area: g;
+    margin-block-start: 1.7rem;
+}
+
+#searchClear {
+    grid-area: h;
+}
+
+.iconSearch {
+    height: 80px;
+    width: 95px;
+}
+
+
+@media screen and (max-width: 1200px) {
+    #searchGrid {
+        display: grid;
+        grid-template-areas: "a b c d e f"
+                             "g g g h h h";
+
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    #searchDate {
+        margin-inline-end: 2rem;
+    }
+
+    #searchButton {
+        margin-block-start: 1.8rem;
+    }
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    #searchGrid {
+        display: grid;
+        grid-template-areas:
+            "b"
+            "c"
+            "d"
+            "e"
+            "f"
+            "g"
+            "h";
+
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    #searchArrow {
+        display: none;
+    }
+
+    #searchDate {
+        align-self: center;
+        justify-self: center;
+        margin-inline: auto;
+        margin-block-end: 2rem;
+    }
+
+    .iconSearch {
+        height: 70px;
+    }
+
+    #searchButton {
+        margin-block: 3rem;
+    }
+
+    #searchGear {
+        margin-block-start: 1rem;
+    }
+
+    #searchSeat {
+        margin-block-start: 1rem;
+    }
+}
