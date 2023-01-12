@@ -57,6 +57,16 @@ class SearchFormType extends AbstractType implements FormTypeInterface
                 'expanded' => false,
                 'required'   => false,
             ])
+            ->add('Gearbox', ChoiceType::class, [
+                'choices' => [
+                    'All' => null,
+                    'Automatic' => 'Automatic',
+                    'Manual' => 'Manual',
+                ],
+                'multiple' => false,
+                'expanded' => false,
+                'required'   => false,
+            ])
             ->add('shared', ChoiceType::class, [
                 'choices' => [
                     'No' => false,

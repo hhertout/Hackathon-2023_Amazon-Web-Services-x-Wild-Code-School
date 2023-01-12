@@ -1,0 +1,21 @@
+{% extends './company/_templateStats.html.twig' %}
+{% block graph %}
+	<div class="p-2 bloc-funnel">
+		<div class="d-flex justify-content-center gap-1 my-3">
+			<a href="#" class="btn bg-secondary active">Available / Shared / Maintenance</a>
+			<a href="#" class="btn bg-secondary">TO REPLACE</a>
+			<a href="#" class="btn bg-secondary">TO REPLACE</a>
+		</div>
+	</div>
+
+	<section>
+		<div class="row mt-3">
+			<div class="col-4">
+				<div class="d-flex flex-column justify-content-center align-items-center">
+					<h2 class="">Vehicle Available (%)</h2>
+					{{ render_chart(chartReservation) }}
+				</div>
+			</div>
+	</section>
+
+{% endblock %}
