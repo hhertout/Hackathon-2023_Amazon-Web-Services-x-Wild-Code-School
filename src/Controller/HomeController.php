@@ -29,6 +29,7 @@ class HomeController extends AbstractController
             $brandArray = ['Peugeot','Citroën','Renault','Volkswagen','BMW','Mercedes','Hyundai','Audi','Opel','Toyota','Ford','Honda','DS',];
             $startDate = $form->getData()['startDate'];
             $endDate = $form->getData()['endDate'];
+            $sharable = $form->getData()['shared'];
 
             $vehicles = $vehicleRepository->findAll();
             foreach($vehicles as $vehicle){
@@ -57,6 +58,7 @@ class HomeController extends AbstractController
                     'id' => $carId,
                     'company' => $user->getCompany(),
                     'isAvailable' => true,
+                    'is_shared' => $sharable,
                     'brand' => $brand ?? $brandArray,
                     'energy' => $energy ?? $energyArray,
                 ])

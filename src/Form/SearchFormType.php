@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -57,6 +56,15 @@ class SearchFormType extends AbstractType implements FormTypeInterface
                 'multiple' => false,
                 'expanded' => false,
                 'required'   => false,
+            ])
+            ->add('shared', ChoiceType::class, [
+                'choices' => [
+                    'No' => false,
+                    'Yes' => true,
+                ],
+                'multiple' => false,
+                'expanded' => false,
+                'label' => 'Show Shared Vehicle',
             ]);
     }
     public function configureOptions(OptionsResolver $resolver): void
