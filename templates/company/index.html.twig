@@ -41,11 +41,36 @@
 				</div>
 			</a>
 		</div>
-		<div class="bg-light text-dark rounded-3 p-2">
+		<div class="bg-light text-dark rounded-3 mb-4 p-2">
 			<h1 class="h1 text-center my-5">Welcome on your dashboard,
 				{{company.name}}</h1>
 
-			<div>Cars number :
-				{{ numberOfCar ?? 'Your fleet is empty' }}</div>
 		</div>
-	{% endblock %}
+		<div class="row">
+			<div class="col-sm-6 m-auto">
+				<div class="card text-dark mt-5">
+					<div class="h2 text-center p-4 mb-0 d-flex flex-column">
+						<span class="fw-bold data-home">{{ numberOfCar ?? 'Your fleet is empty' }}</span>
+						<span class="p-4">Cars number</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 m-auto">
+				<div class="card text-dark mt-5">
+					<div class="h2 text-center p-4 mb-0 d-flex flex-column">
+						<span class="fw-bold data-home">{{ numberOfCar ?? 'Your fleet is empty' }}</span>
+						<span class="p-4">Cars number</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 m-auto">
+				<div class="card text-dark mt-5">
+					<div class="h2 text-center p-4 mb-0 d-flex flex-column">
+						<span class="fw-bold data-home">{{ numberOfCar ?? 'Your fleet is empty' }}</span>
+						<span class="p-4">Cars number</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
