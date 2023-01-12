@@ -9,7 +9,8 @@ use Faker\Factory;
 
 class VehicleFixtures extends Fixture
 {
-    public const NB_VEHICLE_MODEL = 20;
+    public const NB_VEHICLE_MODEL = 100;
+    public const ENERGY = ['Gazoline', 'Electic', 'Diesel'];
 
     public function load(ObjectManager $manager): void
     {
@@ -47,6 +48,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setType('Utility');
             $vehicle->setGearbox('Manual');
             $vehicle->setIsAvailable((bool)rand(0, 1));
+            $this->addReference('Partner_' . $i, $vehicle);
 
             $manager->persist($vehicle);
         }
@@ -55,7 +57,7 @@ class VehicleFixtures extends Fixture
             $vehicle = new Vehicle();
             $vehicle->setBrand('Peugeot');
             $vehicle->setModel('308');
-            $vehicle->setEnergy('Gasoline');
+            $vehicle->setEnergy(self::ENERGY[array_rand(self::ENERGY)]);
             $vehicle->setNbSeat(5);
             $vehicle->setIsShared(false);
             $vehicle->setIsKaput(false);
@@ -64,6 +66,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setType('Urban');
             $vehicle->setGearbox('Automatic');
             $vehicle->setIsAvailable((bool)rand(0, 1));
+            $this->addReference('308_' . $i, $vehicle);
 
             $manager->persist($vehicle);
         }
@@ -81,6 +84,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setType('Urban');
             $vehicle->setGearbox('Manual');
             $vehicle->setIsAvailable((bool)rand(0, 1));
+            $this->addReference('Clio_' . $i, $vehicle);
 
             $manager->persist($vehicle);
         }
