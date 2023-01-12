@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Company;
+use App\Entity\Reservation;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
+use App\Repository\ReservationRepository;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\VehicleRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,20 +83,37 @@ class CompanyController extends AbstractController
             'vehicles' => $vehicles
         ]);
     }
-    #[Route('/request', name: 'app_company_request', methods: ['GET'])]
-    public function request(Company $company): Response
+    #[Route('/request', name: 'app_company_request')]
+    public function request(Company $company, ReservationRepository $reservationRepository, Request $request): Response
     {
+        $reservations = $reservationRepository->findBy(['owner' => $company]);
+        if ($request->getMethod() === 'POST') {
+            $isApproved = $request->get('validate');
+            $isRejected =  $request->get('reject');
+            $reservationId =  $request->get('reservation-id');
+            $reservation = $reservationRepository->findOneBy(['id' => $reservationId]);
+            if ($isApproved === 'Validate') {
+                $reservation->setState(true);
+                $reservationRepository->save($reservation, true);
+            } elseif ($isRejected === 'Reject') {
+                $reservation->setState(false);
+                $reservationRepository->save($reservation, true);
+            }
+            return $this->redirectToRoute('app_company_request', ['company' => $company->getId()], Response::HTTP_SEE_OTHER);
+        }
         return $this->render('company/reservationRequest.html.twig', [
-            'company' => $company
+            'company' => $company,
+            'reservations' => $reservations
         ]);
     }
+
     #[Route('/statistics', name: 'app_company_statistic', methods: ['GET'])]
     public function statistics(Company $company, ChartBuilderInterface $chartBuilder, VehicleRepository $vehicleRepository): Response
     {
         $vehicles = $vehicleRepository->findBy(['company' => $company->getId()]);
         $vehiculeCount = count($vehicles);
         $availableVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'isAvailable' => true]));
-        $sharedVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'is_shared' => true ]));
+        $sharedVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'is_shared' => true]));
         $kaputVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'is_kaput' => true]));
 
         $availablePercent = $availableVehicules / $vehiculeCount * 100;
@@ -102,7 +121,7 @@ class CompanyController extends AbstractController
         $kaputPercent = $kaputVehicules / $vehiculeCount * 100;
 
         dump($sharedVehicules, $kaputVehicules);
-    
+
         $chartIsAvailable = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
         $chartIsAvailable->setData([
             'labels' => ['Vehicles Available (%)', 'Vehicles Not Available (%)'],
@@ -112,7 +131,7 @@ class CompanyController extends AbstractController
                     'backgroundColor' => [
                         'green',
                         'red'
-                      ],
+                    ],
                     'data' => [$availablePercent, 100 - $availablePercent],
                     "hoverOffset" => 8
                 ],
@@ -127,7 +146,7 @@ class CompanyController extends AbstractController
                     'backgroundColor' => [
                         'green',
                         'red'
-                      ],
+                    ],
                     'data' => [$sharedPercent, 100 - $sharedPercent],
                     "hoverOffset" => 4
                 ],
@@ -142,13 +161,13 @@ class CompanyController extends AbstractController
                     'backgroundColor' => [
                         'red',
                         'green'
-                      ],
+                    ],
                     'data' => [$kaputPercent, 100 - $kaputPercent],
                     "hoverOffset" => 4
                 ],
             ],
         ]);
-        
+
         return $this->render('company/stats.html.twig', [
             'company' => $company,
             'chartIsAvailable' => $chartIsAvailable,
