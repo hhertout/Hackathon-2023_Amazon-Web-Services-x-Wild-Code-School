@@ -1,3 +1,6 @@
+{% extends './company/_templateStats.html.twig' %}
+{% block graph %}
+
 {% block title %}
 	{{parent()}}| Statistics
 {% endblock %}
@@ -39,17 +42,10 @@
 				</div>
 			</a>
 		</div>
-
-        <div class="container bg-light text-dark rounded p-2">
-		<h1 class="h1 text-center my-5">Statistics</h1>
-
-		<div class="p-2">
-        <div class="d-flex justify-content-center gap-1 my-3">
-            <a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn bg-secondary active">TO REPLACE</a>
-            <a href={{ path('app_company_fleet_available', {'company': company.id}) }} class="btn bg-secondary">TO REPLACE</a>
-            <a href={{ path('app_company_fleet_sharable', {'company': company.id}) }} class="btn bg-secondary">TO REPLACE</a>
-        </div>
-            
-        </div>
 	</div>
+
+	<section>
+
+	</section>
+
 {% endblock %}

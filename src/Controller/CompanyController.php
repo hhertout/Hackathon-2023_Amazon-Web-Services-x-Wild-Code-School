@@ -85,6 +85,13 @@ class CompanyController extends AbstractController
             'company' => $company
         ]);
     }
+    #[Route('/statistics', name: 'app_company_statistic', methods: ['GET'])]
+    public function statistics(Company $company): Response
+    {
+        return $this->render('company/stats.html.twig', [
+            'company' => $company
+        ]);
+    }
 
     #[Route('/vehicle/new', name: 'app_vehicle_new', methods: ['GET', 'POST'])]
     public function new(Request $request, VehicleRepository $vehicleRepository, Company $company): Response
