@@ -25,7 +25,7 @@ class Vehicle
     private ?string $energy = null;
 
     #[ORM\Column]
-    private ?int $nbSeat = null;
+    private ?int $nbDoor = null;
 
     #[ORM\Column]
     private ?bool $is_shared = null;
@@ -56,6 +56,9 @@ class Vehicle
 
     #[ORM\Column]
     private ?bool $isAvailable = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $kilometers = null;
 
     public function __construct()
     {
@@ -103,14 +106,14 @@ class Vehicle
         return $this;
     }
 
-    public function getNbSeat(): ?int
+    public function getNbDoor(): ?int
     {
-        return $this->nbSeat;
+        return $this->nbDoor;
     }
 
-    public function setNbSeat(int $nbSeat): self
+    public function setNbDoor(int $nbDoor): self
     {
-        $this->nbSeat = $nbSeat;
+        $this->nbDoor = $nbDoor;
 
         return $this;
     }
@@ -249,6 +252,18 @@ class Vehicle
     public function setIsAvailable(bool $isAvailable): self
     {
         $this->isAvailable = $isAvailable;
+
+        return $this;
+    }
+
+    public function getKilometers(): ?int
+    {
+        return $this->kilometers;
+    }
+
+    public function setKilometers(?int $kilometers): self
+    {
+        $this->kilometers = $kilometers;
 
         return $this;
     }

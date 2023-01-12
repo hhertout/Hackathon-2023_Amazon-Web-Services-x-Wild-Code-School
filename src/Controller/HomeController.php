@@ -2,10 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Reservation;
+use App\Entity\Vehicle;
 use App\Form\SearchFormType;
-use App\Repository\CompanyRepository;
-use App\Repository\VehicleRepository;
+use App\Form\ReservationType;
 use App\Service\CalculateDistance;
+use App\Repository\CompanyRepository;
+use App\Repository\ReservationRepository;
+use App\Repository\VehicleRepository;
+use App\Service\HereMapAPI;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +19,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-
     public function userCompany(): Response
     {
         /** @var User $user */
@@ -28,6 +33,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(Request $request, VehicleRepository $vehicleRepository, CalculateDistance $calculateDistance, CompanyRepository $companyRepository): Response
     {
+        // IL FAUT UTILISER IS GRANTED
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
         if ($user === null) {
@@ -36,16 +42,28 @@ class HomeController extends AbstractController
 
         $form = $this->createForm(SearchFormType::class);
         $form->handleRequest($request);
-        $nearCompaniesVehicles = [];
+
         $otherNearCompagnies = [];
         $otherNearCompagniesVehicles = [];
         if ($form->isSubmitted()) {
             $carId = [];
             $energyArray = ['Diesel', 'Electric', 'Gasoline'];
-            $brandArray = ['Peugeot', 'Citroën', 'Renault', 'Volkswagen', 'BMW', 'Mercedes', 'Hyundai', 'Audi', 'Opel', 'Toyota', 'Ford', 'Honda', 'DS',];
+            $brandArray = ['Peugeot', 'Citroën', 'Renault', 'Volkswagen', 'BMW', 'Mercedes', 'Hyundai', 'Audi', 'Opel', 'Toyota', 'Ford', 'Honda', 'DS'];
+            $doorArray = ['3', '5'];
+            $gearboxArray = ['Automatic', 'Manual'];
             $startDate = $form->getData()['startDate'];
             $endDate = $form->getData()['endDate'];
             $sharable = $form->getData()['shared'];
+            dd($form->getData());
+
+            if ($endDate && $startDate) {
+                //J'enregistre les dates en session pour les enregistrer dans l'order
+                $session = $request->getSession();
+                $session->set('vehicleRentDateStart', $startDate);
+                $session->set('vehicleRentEndDate', $endDate);
+            } else {
+                throw new Exception('Veuillez sélectionner une date de départ et d\'arriver');
+            }
 
             $vehicles = $vehicleRepository->findAll();
             foreach ($vehicles as $vehicle) {
@@ -62,8 +80,11 @@ class HomeController extends AbstractController
                     }
                 }
             }
+
             $brand = $form->getData()['Brand'];
             $energy = $form->getData()['energy'];
+            $gearbox = $form->getData()['gearbox'];
+            $doorNumber = $form->getData()['door'];
 
             if ($sharable === true) {
                 $nearCompanies = $calculateDistance->checkDistances($user->getCompany(), $companyRepository->findAll());
@@ -76,7 +97,8 @@ class HomeController extends AbstractController
                 foreach ($otherNearCompagnies as $otherNearCompagny) {
                     $otherNearCompagniesVehicles = array_merge($otherNearCompagniesVehicles, $vehicleRepository->findBy([
                         'company' => $otherNearCompagny,
-                        'is_shared' => true
+                        'is_shared' => true,
+                        'isAvailable' => true,
                     ]));
                 }
             }
@@ -85,7 +107,9 @@ class HomeController extends AbstractController
                 'company' => $user->getCompany(),
                 'isAvailable' => true,
                 'brand' => $brand ?? $brandArray,
-                'energy' => $energy ?? $energyArray
+                'energy' => $energy ?? $energyArray,
+                'gearbox' => $gearbox ?? $gearboxArray,
+                'door' => $doorNumber ?? $doorArray
             ]);
         } else {
             $vehicles = $vehicleRepository->findBy(['company' => $user->getCompany(), 'isAvailable' => true,]);
@@ -94,6 +118,41 @@ class HomeController extends AbstractController
             'searchForm' => $form->createView(),
             'vehicles' => $vehicles,
             'otherNearCompagniesVehicles' => $otherNearCompagniesVehicles ?? []
+        ]);
+    }
+
+    #[Route('/reserve/{vehicle}', name: 'app_show')]
+    public function showOrder(Request $request, Vehicle $vehicle, ReservationRepository $reservationRepository, HereMapAPI $hereMapAPI): Response
+    {
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+        $session = $request->getSession();
+        $vehicleRentDateStart = $session->get('vehicleRentDateStart');
+        $vehicleRentEndDate = $session->get('vehicleRentEndDate');
+        if ($request->getMethod() === 'POST') {
+            $destination = $request->get('destination');
+            $reservation = new Reservation();
+            $reservation->setRentedDate($vehicleRentDateStart);
+            $reservation->setReturnDate($vehicleRentEndDate);
+            $reservation->setUser($this->getUser());
+            $reservation->setVehicle($vehicle);
+            $reservation->setDestination($destination);
+            $reservation->setLatitude($hereMapAPI->geolocateViaAddress($destination)['lat']);
+            $reservation->setLongitude($hereMapAPI->geolocateViaAddress($destination)['lng']);
+            if ($user->getCompany() !== $vehicle->getCompany()) {
+                $reservation->setOwner($vehicle->getCompany());
+            }
+
+            $reservationRepository->save($reservation, true);
+            $session->remove('vehicleRentDateStart');
+            $session->remove('vehicleRentEndDate');
+
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render('company/newReservation.html.twig', [
+            'vehicle' => $vehicle,
+            'vehicleRentDateStart' => $vehicleRentDateStart,
+            'vehicleRentEndDate' => $vehicleRentEndDate,
         ]);
     }
 }

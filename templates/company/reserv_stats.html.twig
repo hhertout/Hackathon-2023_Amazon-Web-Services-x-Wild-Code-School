@@ -13,24 +13,9 @@
 			<div class="col-4">
 				<div class="d-flex flex-column justify-content-center align-items-center">
 					<h2 class="">Vehicle Available (%)</h2>
-					{{ render_chart(chartIsAvailable) }}
+					{{ render_chart(chartReservation) }}
 				</div>
 			</div>
-			<div class="col-4">
-				<div class="d-flex flex-column justify-content-center align-items-center">
-					<h2>Vehicle Shared (%)</h2>
-					{{ render_chart(chartIsShared) }}
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="d-flex flex-column justify-content-center align-items-center">
-					<h2>Vehicle In Maintenance (%)</h2>
-					{{ render_chart(chartIsKaput) }}
-				</div>
-			</div>
-		</div>
-
-
 	</section>
 
 {% endblock %}

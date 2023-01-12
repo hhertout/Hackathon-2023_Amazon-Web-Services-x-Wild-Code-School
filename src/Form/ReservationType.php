@@ -16,8 +16,7 @@ class ReservationType extends AbstractType
             ->add('returnDate')
             ->add('destination')
             ->add('vehicle')
-            ->add('user')
-        ;
+            ->add('user');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

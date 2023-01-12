@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Company;
+use App\Entity\Reservation;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
+use App\Repository\ReservationRepository;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\VehicleRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -76,33 +78,48 @@ class CompanyController extends AbstractController
         $companyId = $company->getId();
         $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'is_shared' => false]);
 
-        return $this->render('company/fleetnotSharable.html.twig', [
+        return $this->render('company/fleetNotSharable.html.twig', [
             'company' => $company,
             'vehicles' => $vehicles
         ]);
     }
-    #[Route('/request', name: 'app_company_request', methods: ['GET'])]
-    public function request(Company $company): Response
+    #[Route('/request', name: 'app_company_request')]
+    public function request(Company $company, ReservationRepository $reservationRepository, Request $request): Response
     {
+        $reservations = $reservationRepository->findBy(['owner' => $company]);
+        if ($request->getMethod() === 'POST') {
+            $isApproved = $request->get('validate');
+            $isRejected =  $request->get('reject');
+            $reservationId =  $request->get('reservation-id');
+            $reservation = $reservationRepository->findOneBy(['id' => $reservationId]);
+            if ($isApproved === 'Validate') {
+                $reservation->setState(true);
+                $reservationRepository->save($reservation, true);
+            } elseif ($isRejected === 'Reject') {
+                $reservation->setState(false);
+                $reservationRepository->save($reservation, true);
+            }
+            return $this->redirectToRoute('app_company_request', ['company' => $company->getId()], Response::HTTP_SEE_OTHER);
+        }
         return $this->render('company/reservationRequest.html.twig', [
-            'company' => $company
+            'company' => $company,
+            'reservations' => $reservations
         ]);
     }
+
     #[Route('/statistics', name: 'app_company_statistic', methods: ['GET'])]
     public function statistics(Company $company, ChartBuilderInterface $chartBuilder, VehicleRepository $vehicleRepository): Response
     {
         $vehicles = $vehicleRepository->findBy(['company' => $company->getId()]);
         $vehiculeCount = count($vehicles);
         $availableVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'isAvailable' => true]));
-        $sharedVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'is_shared' => true ]));
+        $sharedVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'is_shared' => true]));
         $kaputVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'is_kaput' => true]));
 
         $availablePercent = $availableVehicules / $vehiculeCount * 100;
         $sharedPercent = $sharedVehicules / $vehiculeCount * 100;
         $kaputPercent = $kaputVehicules / $vehiculeCount * 100;
 
-        dump($sharedVehicules, $kaputVehicules);
-    
         $chartIsAvailable = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
         $chartIsAvailable->setData([
             'labels' => ['Vehicles Available (%)', 'Vehicles Not Available (%)'],
@@ -112,7 +129,7 @@ class CompanyController extends AbstractController
                     'backgroundColor' => [
                         'green',
                         'red'
-                      ],
+                    ],
                     'data' => [$availablePercent, 100 - $availablePercent],
                     "hoverOffset" => 8
                 ],
@@ -127,7 +144,7 @@ class CompanyController extends AbstractController
                     'backgroundColor' => [
                         'green',
                         'red'
-                      ],
+                    ],
                     'data' => [$sharedPercent, 100 - $sharedPercent],
                     "hoverOffset" => 4
                 ],
@@ -142,18 +159,47 @@ class CompanyController extends AbstractController
                     'backgroundColor' => [
                         'red',
                         'green'
-                      ],
+                    ],
                     'data' => [$kaputPercent, 100 - $kaputPercent],
                     "hoverOffset" => 4
                 ],
             ],
         ]);
-        
+
         return $this->render('company/stats.html.twig', [
             'company' => $company,
             'chartIsAvailable' => $chartIsAvailable,
             'chartIsShared' => $chartIsShared,
             'chartIsKaput' => $chartIsKaput
+        ]);
+    }
+    #[Route('/reservations-statistics', name: 'app_company_reserv_statistic', methods: ['GET'])]
+    public function statisticsReservation(Company $company, ChartBuilderInterface $chartBuilder): Response
+    {
+        $chartReservation = $chartBuilder->createChart(Chart::TYPE_BAR);
+        $chartReservation->setData([
+            'labels' => ['Vehicles Available (%)', 'Vehicles Not Available (%)'],
+            'datasets' => [
+                [
+                    'label' => 'Available',
+                    'backgroundColor' => [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    'data' => [],
+                    "hoverOffset" => 8
+                ],
+            ],
+        ]);
+
+        return $this->render('company/reserv_stats.html.twig', [
+            'company' => $company,
+            'chartReservation' => $chartReservation,
         ]);
     }
 
@@ -196,7 +242,7 @@ class CompanyController extends AbstractController
             $vehicleRepository->save($vehicle, true);
 
 
-            return $this->redirectToRoute('app_company_home', ['company' => $vehicle->getCompany()->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_company_fleet', ['company' => $vehicle->getCompany()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('vehicle/edit.html.twig', [

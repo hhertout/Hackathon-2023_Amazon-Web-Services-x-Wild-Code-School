@@ -42,21 +42,23 @@
 						<div class="bloc-date text-dark my-5 d-flex flex-column align-items-center">
 							<div class="date-start d-flex">
 								<p class="fw-bold mx-5">Start Date</p>
-								<p class="mx-5">vehicleRentDateStart</p>
+								<p class="mx-5">{{vehicleRentDateStart|date('Y-m-d') }}</p>
 							</div>
 							<div class="date-end d-flex">
 								<p class="fw-bold mx-5">End Date</p>
-								<p class="mx-5">Datetime</p>
+								<p class="mx-5">{{vehicleRentEndDate|date('Y-m-d') }}</p>
 							</div>
-						</div>
-						{{ include('reservation/_form.html.twig') }}
-
-						<div class="col-10 col-sm-5 m-auto">
-							<div class="bloc-btn d-flex flex-column justify-content-center align-items-center">
-								<button class="btn btn-lg btn-secondary mb-3 w-100">Accept</button>
-								<a href="/" class="btn btn-lg btn-outline-dark w-100">Return</a>
+							<form id="order" action="" method="post">
+								<label for="destination" class="form-label fw-bold px-2">Destination</label>
+								<input type="text" name="destination" class="form-widget rounded-3 px-2">
 							</div>
-						</div>
+							<div class="col-10 col-sm-5 m-auto">
+								<div class="bloc-btn d-flex flex-column justify-content-center align-items-center">
+									<input type="submit" for="order" class="btn btn-lg btn-secondary mb-3 w-100" value="Accept">
+									<a href="{{ path('app_home') }}" class="btn btn-lg btn-outline-dark w-100">Return</a>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
