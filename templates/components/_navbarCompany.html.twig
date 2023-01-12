@@ -19,7 +19,7 @@
 					<div class="dropdown">
 						{% if app.user %}
 							<a class="nav-link fw-bold text-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-								{{app.user.email}}
+								{{ app.user.email }}
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 								{% if is_granted("ROLE_COMPANY") %}

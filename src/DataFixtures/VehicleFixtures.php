@@ -10,7 +10,7 @@ use Faker\Factory;
 class VehicleFixtures extends Fixture
 {
     public const NB_VEHICLE_MODEL = 100;
-    public const ENERGY = ['Gazoline', 'Electic', 'Diesel'];
+    public const ENERGY = ['Gazoline', 'Electric', 'Diesel'];
 
     public function load(ObjectManager $manager): void
     {

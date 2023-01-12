@@ -1,0 +1,25 @@
+{% extends 'layoutUser.html.twig' %}
+
+{% block title %}My account
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		<div>
+			<a href="{{ path('app_account') }}" class="btn bg-secondary">Home</a>
+			<a href="{{ path('app_reservation') }}" class="btn bg-secondary">My Reservations</a>
+			<a href="{{ path('app_account_info') }}" class="btn bg-secondary active">My Infos</a>
+		</div>
+
+
+		<div class="container bg-light text-dark mt-3 rounded">
+		<h1>Hello
+			{{ app.user.firstname }}, here's your personnal info</h1>
+			<div>{{ app.user.firstname}}</div>
+			<div>{{ app.user.lastname}}</div>
+			<div>{{ app.user.email}}</div>
+			<div>{{ app.user.company.name }}</div>
+		</div>
+	</div>
+</div>{% endblock %}

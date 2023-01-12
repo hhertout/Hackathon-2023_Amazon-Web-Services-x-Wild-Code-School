@@ -14,34 +14,34 @@
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="{{path('app_home')}}">Home</a>
 						</li>
-					</ul>
-					{{ render(controller('App\\Controller\\HomeController::userCompany')) }}
-					<div class="dropdown">
-						{% if app.user %}
-							<a class="nav-link fw-bold text-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-								{{app.user.email}}
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-								{% if is_granted("ROLE_COMPANY") %}
-									<li>
-										<a class="dropdown-item text-dark" href="{{path('app_company_home')}}">
-											Dashboard
-										</a>
-									</li>
-								{% endif %}
-								<li>
-									<a class="dropdown-item text-dark" href="{{path('app_logout')}}">
-										Logout
-									</a>
-								</li>
-							</ul>
-						{% else %}
-							<a class="nav-link text-dark" href="{{path('app_login')}}">
-								Login
-							</a>
+						{% if is_granted("ROLE_COMPANY") %}
+							{{ render(controller('App\\Controller\\HomeController::userCompany')) }}
 						{% endif %}
-					</div>
+					</ul>
+				</ul>
+				<div class="dropdown">
+					{% if app.user %}
+						<a class="nav-link fw-bold text-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+							{{app.user.email}}
+						</a>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<li>
+								<a class="dropdown-item text-dark" href="{{path('app_logout')}}">
+									Logout
+								</a>
+							</li>
+							<li>
+								<a href="{{ path('app_account') }}" class="dropdown-item text-dark">My account</a>
+							</li>
+						</ul>
+					{% else %}
+						<a class="nav-link text-dark" href="{{path('app_login')}}">
+							Login
+						</a>
+					{% endif %}
 				</div>
 			</div>
-		</nav>
-	</header>
+		</div>
+	</nav>
+</header>
