@@ -4,11 +4,12 @@
 {% endblock %}
 
 {% block content %}
-	<h1>Edit Vehicle</h1>
+	<div class="container bg-light text-dark rounded p-3">
+		<h1>Edit Vehicle</h1>
+		<div class="d-flex flex-column">
+			{{ include('vehicle/_form.html.twig', {'button_label': 'Update'}) }}
 
-	{{ include('vehicle/_form.html.twig', {'button_label': 'Update'}) }}
-
-	<a href="{{ path('app_company_home', {'company': vehicle.company.id}) }}">back to list</a>
-
-	{{ include('vehicle/_delete_form.html.twig') }}
+			<a class="btn bg-secondary my-3" href="{{ path('app_company_fleet', {'company': vehicle.company.id}) }}">Back to list</a>
+		</div>
+	</div>
 {% endblock %}

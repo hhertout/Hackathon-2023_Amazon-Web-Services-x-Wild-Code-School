@@ -18,12 +18,23 @@ class VehicleType extends AbstractType implements FormTypeInterface
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('brand', TextType::class)
-            ->add('model', TextType::class)
+            ->add('brand', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('model', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
             ->add(
                 'energy',
                 ChoiceType::class,
                 [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
                     'choices' => [
                         'diesel' => 'diesel',
                         'electric' => 'electric',
@@ -33,8 +44,15 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     'expanded' => false,
                 ]
             )
-            ->add('nbSeat', IntegerType::class)
+            ->add('nbSeat', IntegerType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
             ->add('is_shared', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
                 'choices' => [
                     'No' => false,
                     'Yes' => true,
@@ -43,6 +61,9 @@ class VehicleType extends AbstractType implements FormTypeInterface
                 'expanded' => false,
             ])
             ->add('is_kaput', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
                 'choices' => [
                     'No' => false,
                     'Yes' => true,
@@ -50,12 +71,23 @@ class VehicleType extends AbstractType implements FormTypeInterface
                 'multiple' => false,
                 'expanded' => false,
             ])
-            ->add('immatriculation', TextType::class)
-            ->add('autonomy', IntegerType::class)
+            ->add('immatriculation', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('autonomy', IntegerType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
             ->add(
                 'type',
                 ChoiceType::class,
                 [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
                     'choices' => [
                         'utility' => 'utility',
                         'SUV' => 'SUV',
@@ -70,6 +102,9 @@ class VehicleType extends AbstractType implements FormTypeInterface
                 'gearbox',
                 ChoiceType::class,
                 [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
                     'choices' => [
                         'manual' => 'manual',
                         'automatic' => 'automatic'
@@ -78,8 +113,11 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     'expanded' => false,
                 ]
             )
-            ->add('poster')
+            //->add('poster')
             ->add('isAvailable', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
                 'choices' => [
                     'No' => false,
                     'Yes' => true,
