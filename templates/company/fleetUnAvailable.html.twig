@@ -50,10 +50,10 @@
 		<div class="p-2 bloc-funnel">
         <div class="d-flex justify-content-center gap-1 my-3">
             <a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn bg-secondary">Show All</a>
-            <a href={{ path('app_company_fleet_available', {'company': company.id}) }} class="btn bg-secondary active">Show your vehicles available</a>
-			<a href={{ path('app_company_fleet_unavailable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles unavailable</a>
+            <a href={{ path('app_company_fleet_available', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles available</a>
+            <a href={{ path('app_company_fleet_unavailable', {'company': company.id}) }} class="btn bg-secondary active">Show your vehicles unavailable</a>
             <a href={{ path('app_company_fleet_sharable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles rentable</a>
-			<a href={{ path('app_company_fleet_notsharable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles not rentable</a>
+            <a href={{ path('app_company_fleet_notsharable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles not rentable</a>
         </div>
             {% include './company/_carList.html.twig' %}
         </div>
