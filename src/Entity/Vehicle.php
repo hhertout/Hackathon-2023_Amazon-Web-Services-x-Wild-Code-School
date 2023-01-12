@@ -57,6 +57,9 @@ class Vehicle
     #[ORM\Column]
     private ?bool $isAvailable = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $kilometers = null;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -249,6 +252,18 @@ class Vehicle
     public function setIsAvailable(bool $isAvailable): self
     {
         $this->isAvailable = $isAvailable;
+
+        return $this;
+    }
+
+    public function getKilometers(): ?int
+    {
+        return $this->kilometers;
+    }
+
+    public function setKilometers(?int $kilometers): self
+    {
+        $this->kilometers = $kilometers;
 
         return $this;
     }
