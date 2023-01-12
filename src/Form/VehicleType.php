@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Vehicle;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,23 +17,20 @@ class VehicleType extends AbstractType implements FormTypeInterface
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('brand', TextType::class, [
+            ->add('brand', TextType::class,[
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control mb-3'
                 ]
             ])
-            ->add('model', TextType::class, [
+            ->add('model', TextType::class,[
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control mb-3 mb-3'
                 ]
             ])
             ->add(
                 'energy',
                 ChoiceType::class,
                 [
-                    'attr' => [
-                        'class' => 'form-control',
-                    ],
                     'choices' => [
                         'diesel' => 'diesel',
                         'electric' => 'electric',
@@ -40,16 +38,19 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     ],
                     'multiple' => false,
                     'expanded' => false,
+                    'attr' => [
+                        'class' => 'form-select mb-3',
+                    ]
                 ]
             )
             ->add('nbSeat', IntegerType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control mb-3',
                 ]
             ])
             ->add('is_shared', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control mx-2 mb-3',
                 ],
                 'choices' => [
                     'No' => false,
@@ -60,7 +61,7 @@ class VehicleType extends AbstractType implements FormTypeInterface
             ])
             ->add('is_kaput', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control mx-2 mb-3',
                 ],
                 'choices' => [
                     'No' => false,
@@ -71,12 +72,12 @@ class VehicleType extends AbstractType implements FormTypeInterface
             ])
             ->add('immatriculation', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control mb-3',
                 ]
             ])
             ->add('autonomy', IntegerType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control mb-3',
                 ]
             ])
             ->add(
@@ -94,27 +95,30 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     ],
                     'multiple' => false,
                     'expanded' => false,
+                    'attr' => [
+                        'class' => 'form-select mb-3',
+                    ]
                 ]
             )
             ->add(
                 'gearbox',
                 ChoiceType::class,
                 [
-                    'attr' => [
-                        'class' => 'form-control',
-                    ],
                     'choices' => [
                         'manual' => 'manual',
                         'automatic' => 'automatic'
                     ],
                     'multiple' => false,
                     'expanded' => false,
+                    'attr' => [
+                        'class' => 'form-select mb-3',
+                    ]
                 ]
             )
             //->add('poster')
             ->add('isAvailable', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control mx-2 mb-4',
                 ],
                 'choices' => [
                     'No' => false,
