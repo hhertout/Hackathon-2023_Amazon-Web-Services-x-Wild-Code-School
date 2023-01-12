@@ -43,7 +43,20 @@ class UserFixtures extends Fixture
         $password = $this->passwordHasher->hashPassword($randomUser, 'password');
         $randomUser->setPassword($password);
         $randomUser->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
+        $this->addReference('randomUser_1', $randomUser);
         $manager->persist($randomUser);
+
+        $randomReserver = new User();
+        $randomReserver->setRoles(['ROLE_EMPLOYEE']);
+        $randomReserver->setEmail('previousRenter@gmail.com');
+        $randomReserver->setFirstname('Vin');
+        $randomReserver->setLastname('Diesel');
+        $randomReserver->setPhoneNumber('0689324523');
+        $password = $this->passwordHasher->hashPassword($randomReserver, 'password');
+        $randomReserver->setPassword($password);
+        $randomReserver->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
+        $this->addReference('randomReserver_1', $randomReserver);
+        $manager->persist($randomReserver);
 
         $admin = new User();
         $admin->setRoles(['ROLE_ADMIN']);

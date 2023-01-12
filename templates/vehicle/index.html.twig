@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicle index
+{% endblock %}
+
+{% block content %}
+	<h1>Vehicle index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Brand</th>
+				<th>Model</th>
+				<th>Energy</th>
+				<th>NbSeat</th>
+				<th>Is_shared</th>
+				<th>Is_kaput</th>
+				<th>Immatriculation</th>
+				<th>Autonomy</th>
+				<th>Type</th>
+				<th>Gearbox</th>
+				<th>Poster</th>
+				<th>IsAvailable</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for vehicle in vehicles %}
+				<tr>
+					<td>{{ vehicle.id }}</td>
+					<td>{{ vehicle.brand }}</td>
+					<td>{{ vehicle.model }}</td>
+					<td>{{ vehicle.energy }}</td>
+					<td>{{ vehicle.nbSeat }}</td>
+					<td>{{ vehicle.isShared ? 'Yes' : 'No' }}</td>
+					<td>{{ vehicle.isKaput ? 'Yes' : 'No' }}</td>
+					<td>{{ vehicle.immatriculation }}</td>
+					<td>{{ vehicle.autonomy }}</td>
+					<td>{{ vehicle.type }}</td>
+					<td>{{ vehicle.gearbox }}</td>
+					<td>{{ vehicle.poster }}</td>
+					<td>{{ vehicle.isAvailable ? 'Yes' : 'No' }}</td>
+					<td>
+						<a href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">show</a>
+						<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="14">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_vehicle_new') }}">Create new</a>
+{% endblock %}

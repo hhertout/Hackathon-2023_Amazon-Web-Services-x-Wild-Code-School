@@ -16,12 +16,17 @@ class SearchFormType extends AbstractType implements FormTypeInterface
         $builder
             ->add('startDate', DateTimeType::class, [
                 'label' => 'Starting Date',
+                'attr'   => ['min' => ( new \DateTime() )->format('Y-m-d H:i')],
+                'widget' => 'single_text',
             ])
             ->add('endDate', DateTimeType::class, [
                 'label' => 'End Date',
+                'attr'   => ['min' => ( new \DateTime() )->format('Y-m-d H:i')],
+                'widget' => 'single_text',
             ])
             ->add('Brand', ChoiceType::class, [
                 'choices' => [
+                    'All' => null,
                     'Peugeot' => 'Peugeot',
                     'Citroën' => 'Citroën',
                     'Renault' => 'Renault',
@@ -37,17 +42,29 @@ class SearchFormType extends AbstractType implements FormTypeInterface
                     'DS' => 'DS',
                 ],
                 'attr' => [
-                    'label' => 'Brand'
-                ]
+                    'label' => 'Brand',
+                ],
+                'required'   => false,
             ])
             ->add('energy', ChoiceType::class, [
                 'choices' => [
-                    'diesel' => 'diesel',
-                    'electric' => 'electric',
-                    'gazoline' => 'gasoline'
+                    'All' => null,
+                    'Diesel' => 'Diesel',
+                    'Electric' => 'Electric',
+                    'Gasoline' => 'gasoline'
                 ],
                 'multiple' => false,
                 'expanded' => false,
+                'required'   => false,
+            ])
+            ->add('shared', ChoiceType::class, [
+                'choices' => [
+                    'No' => false,
+                    'Yes' => true,
+                ],
+                'multiple' => false,
+                'expanded' => false,
+                'label' => 'Show Shared Vehicle',
             ]);
     }
     public function configureOptions(OptionsResolver $resolver): void
