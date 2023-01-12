@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Amazon Car Services
+			{% block title %}
+				Amazon Car Services
 			{% endblock %}
 		</title>
 		<link
@@ -18,10 +19,10 @@
 		{% endblock %}
 	</head>
 	<body class="d-flex flex-column min-vh-100 justify-content-between"> 
-		{% include "/components/_navbarUser.html.twig" %}
+		{% block header %}{% endblock %}
 			<main>
 				{% block content %}{% endblock %}
 			</main>
-		{% include "/components/_footer.html.twig" %}
+		{% block footer %}{% endblock %}
 	</body>
 </html>
