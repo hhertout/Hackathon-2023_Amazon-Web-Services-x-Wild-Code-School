@@ -40,6 +40,9 @@ class Reservation
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?Company $owner = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $state = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +140,18 @@ class Reservation
     public function setOwner(?Company $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function isState(): ?bool
+    {
+        return $this->state;
+    }
+
+    public function setState(?bool $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }
