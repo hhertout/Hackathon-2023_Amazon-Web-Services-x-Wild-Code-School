@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230112001013 extends AbstractMigration
+final class Version20230112211117 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,11 +21,17 @@ final class Version20230112001013 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE company ADD latitude DOUBLE PRECISION NOT NULL, ADD longitude DOUBLE PRECISION NOT NULL');
+        $this->addSql('ALTER TABLE reservation ADD owner_id INT DEFAULT NULL, ADD latitude DOUBLE PRECISION DEFAULT NULL, ADD longitude DOUBLE PRECISION DEFAULT NULL');
+        $this->addSql('ALTER TABLE reservation ADD CONSTRAINT FK_42C849557E3C61F9 FOREIGN KEY (owner_id) REFERENCES company (id)');
+        $this->addSql('CREATE INDEX IDX_42C849557E3C61F9 ON reservation (owner_id)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE company DROP latitude, DROP longitude');
+        $this->addSql('ALTER TABLE reservation DROP FOREIGN KEY FK_42C849557E3C61F9');
+        $this->addSql('DROP INDEX IDX_42C849557E3C61F9 ON reservation');
+        $this->addSql('ALTER TABLE reservation DROP owner_id, DROP latitude, DROP longitude');
     }
 }

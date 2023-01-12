@@ -35,12 +35,16 @@ class Company
 
     #[ORM\Column]
     private ?float $longitude = null;
-    
+
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Reservation::class)]
+    private Collection $reservations;
+
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->vehicles = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -164,6 +168,36 @@ class Company
     public function setLongitude(float $longitude): self
     {
         $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getOwner() === $this) {
+                $reservation->setOwner(null);
+            }
+        }
 
         return $this;
     }

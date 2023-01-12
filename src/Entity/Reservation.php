@@ -31,6 +31,15 @@ class Reservation
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $latitude = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $longitude = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    private ?Company $owner = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +101,42 @@ class Reservation
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?float $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getOwner(): ?Company
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?Company $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }
