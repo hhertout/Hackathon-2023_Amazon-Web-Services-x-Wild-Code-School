@@ -6,51 +6,15 @@
 
 {% block content %}
 	<div class="container">
-		<h1 class="h1 text-center my-5">Your fleet</h1>
-		<div class="d-flex justify-content-end">
-			<a class="btn btn-lg btn-secondary text-light fw-bold mb-3" href="{{ path('app_vehicle_new', {'company' : company.id}) }}">Add you vehicle</a>
+		<div>
+			<a href="{{ path('app_company_home', {'company': company.id}) }}" class="btn btn-lg bg-secondary active">Home</a>
+			<a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Fleet</a>
+			<a href="{{ path('app_company_request', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Request</a>
+			<a href="#" class="btn btn-lg bg-secondary">Statistics</a>
 		</div>
-		<div class="bg-light rounded-3 p-2">
-			<table class="text-dark w-100">
-				<thead class="border-bottom">
+		<div class="bg-light text-dark rounded-3 p-2">
+			<h1 class="h1 text-center my-5">Welcome on your dashboard, {{company.name}}</h1>
 
-					<tr>
-						<th>Plate number</th>
-						<th>Model</th>
-						<th>Unavailable</th>
-						<th>Shareable</th>
-					</tr>
-				</thead>
-			</thead>
-			<tbody>
-				<tr>
-					{% for vehicle in company.vehicles %}
-						<td>{{vehicle.immatriculation}}</td>
-						<td>{{vehicle.model}}</td>
-						{% if vehicle.isAvailable is same as(1) %}
-							<td class="text-success">{{vehicle.isAvailable}}</td>
-						{% else  %}
-							<td class="text-danger">Vehicle not available
-							</td>
-						{% endif  %}
-						{% if vehicle.isShared is same as(1)   %}
-							<td class="text-danger">Vehicle shared</td>
-						{% else  %}
-							<td class="text-success">Vehicle not shared
-							</td>
-						{% endif  %}
-						<td>
-							<a class="btn btn-secondary w-75" href="{{ path('app_vehicle_edit', {'company' : company.id,'vehicle': vehicle.id}) }}">Edit</a>
-						</td>
-						<td>
-							<form method="post" action="{{ path('app_vehicle_delete', {'company' : company.id,'vehicle': vehicle.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ vehicle.id) }}">
-								<button class="btn btn-danger w-75">Delete</button>
-							</form>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	</div>
-{% endblock %}
+			<div>Cars number : {{ numberOfCar ?? 'Your fleet is empty' }}</div>
+		</div>
+	{% endblock %}

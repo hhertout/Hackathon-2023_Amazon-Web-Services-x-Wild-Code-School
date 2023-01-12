@@ -1,0 +1,55 @@
+{% if vehicles is not empty %}
+	<table class="w-100">
+		<thead class="border-bottom">
+
+			<tr class="bg-secondary">
+				<th class="p-2">Ref</th>
+				<th class="p-2">Plate number</th>
+				<th class="p-2">Model</th>
+				<th class="p-2">Available</th>
+				<th class="p-2">Shared</th>
+				<th class="p-2"></th>
+				<th class="p-2"></th>
+			</tr>
+		</thead>
+	</thead>
+	<tbody>
+		<tr>
+			{% for vehicle in vehicles %}
+				<td>{{vehicle.id}}</td>
+				<td>{{ vehicle.immatriculation|upper }}</td>
+				<td>{{ vehicle.model }}</td>
+				{% if vehicle.isAvailable == 1  %}
+					<td>
+						<div class="badge bg-success">Vehicle available</div>
+					</td>
+				{% else  %}
+					<td class="text-danger">
+						<div class="badge bg-danger">Vehicle not available
+						</div>
+					</td>
+				{% endif  %}
+				{% if vehicle.isShared == 1 %}
+					<td>
+						<div class="badge bg-success">Vehicle shared</div>
+					</td>
+				{% else  %}
+					<td>
+						<div class="badge bg-danger">Vehicle not shared
+						</div>
+					</td>
+				{% endif  %}
+				<td>
+					<a class="btn btn-secondary" href="{{ path('app_vehicle_edit', {'company' : company.id,'vehicle': vehicle.id}) }}">Edit</a>
+				</td>
+				<td>
+					<form method="post" action="{{ path('app_vehicle_delete', {'company' : company.id,'vehicle': vehicle.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+						<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ vehicle.id) }}">
+						<button class="btn bg-danger">Delete</button>
+					</form>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>{% else %}
+<div>Your fleet is empty</div>{% endif %}

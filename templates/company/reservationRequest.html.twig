@@ -1,0 +1,19 @@
+{% extends 'layoutUser.html.twig' %}
+
+{% block title %}
+	{{parent()}}| Your fleet
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div>
+			<a href="{{ path('app_company_home', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Home</a>
+			<a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Fleet</a>
+			<a href="{{ path('app_company_request', {'company': company.id}) }}" class="btn btn-lg bg-secondary active">Request</a>
+		</div>
+		<div class="bg-light text-dark rounded-3 p-2">
+			<h1 class="h1 text-center my-5">All the request for your vehicle are there,</h1>
+
+			
+		</div>
+	{% endblock %}

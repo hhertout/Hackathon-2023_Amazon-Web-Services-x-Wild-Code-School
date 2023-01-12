@@ -25,7 +25,7 @@ class CompanyFixtures extends Fixture
             $company->setName($faker->words(3, true));
             $company->setSIRET($faker->numberBetween(1111111111111, 9999999999999));
             $this->addReference('company_' . $i, $company);
-            $company->setAddress('3 rue de l\'adresse, 75000 Paris');
+            $company->setAddress('30 Rue du Canal, 44210 Pornic');
             $company->setLatitude($this->hereMapAPI->geolocateViaAddress($company->getAddress())['lat']);
             $company->setLongitude($this->hereMapAPI->geolocateViaAddress($company->getAddress())['lng']);
 

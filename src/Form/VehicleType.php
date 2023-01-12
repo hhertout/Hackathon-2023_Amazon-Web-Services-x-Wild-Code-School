@@ -43,35 +43,50 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     ]
                 ]
             )
-            ->add('nbSeat', IntegerType::class,[
+            ->add('nbSeat', IntegerType::class, [
                 'attr' => [
-                    'class' => 'form-control mb-3'
+                    'class' => 'form-control mb-3',
                 ]
             ])
-            ->add('is_shared', CheckboxType::class, [
+            ->add('is_shared', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-check-input mx-2 mb-3',
+                    'class' => 'form-control mx-2 mb-3',
+                ],
+                'choices' => [
+                    'No' => false,
+                    'Yes' => true,
+                ],
+                'multiple' => false,
+                'expanded' => false,
+            ])
+            ->add('is_kaput', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control mx-2 mb-3',
+                ],
+                'choices' => [
+                    'No' => false,
+                    'Yes' => true,
+                ],
+                'multiple' => false,
+                'expanded' => false,
+            ])
+            ->add('immatriculation', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control mb-3',
                 ]
             ])
-            ->add('is_kaput', CheckboxType::class, [
+            ->add('autonomy', IntegerType::class, [
                 'attr' => [
-                    'class' => 'form-check-input mx-2 mb-3',
-                ]
-            ])
-            ->add('immatriculation', TextType::class,[
-                'attr' => [
-                    'class' => 'form-control mb-3'
-                ]
-            ])
-            ->add('autonomy', IntegerType::class,[
-                'attr' => [
-                    'class' => 'form-control mb-3'
+                    'class' => 'form-control mb-3',
                 ]
             ])
             ->add(
                 'type',
                 ChoiceType::class,
                 [
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
                     'choices' => [
                         'utility' => 'utility',
                         'SUV' => 'SUV',
@@ -100,15 +115,17 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     ]
                 ]
             )
-            ->add('poster', TextType::class,[
+            //->add('poster')
+            ->add('isAvailable', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-control mb-3'
-                ]
-            ])
-            ->add('isAvailable', CheckboxType::class, [
-                'attr' => [
-                    'class' => 'form-check-input mx-2 mb-4',
-                ]
+                    'class' => 'form-control mx-2 mb-4',
+                ],
+                'choices' => [
+                    'No' => false,
+                    'Yes' => true,
+                ],
+                'multiple' => false,
+                'expanded' => false,
             ]);
     }
 
