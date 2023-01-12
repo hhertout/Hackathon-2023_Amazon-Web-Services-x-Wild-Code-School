@@ -33,15 +33,19 @@ class HomeController extends AbstractController
             $vehicles = $vehicleRepository->findAll();
             foreach($vehicles as $vehicle){
                 $vehicleRent = $vehicle->getReservations();
+                if($vehicleRent->isEmpty())
+                {
+                    $carId[] = $vehicle->getId();
+                }
                 foreach($vehicleRent as $rent){
                     $vehiculeRentDateStart = $rent->getRentedDate();
                     $vehiculeRentDateEnd = $rent->getReturnDate();
-                    //dd(($endDate > $vehiculeRentDateEnd && $endDate > $vehiculeRentDateEnd), $vehiculeRentDateStart, $vehiculeRentDateEnd);
 
                     if (!($startDate <= $vehiculeRentDateEnd && $endDate >= $vehiculeRentDateStart))
                     {
                         $carId[] = $rent->getVehicle()->getId();
                     }
+                    
                 }
             }
             $brand = $form->getData()['Brand'];
