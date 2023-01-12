@@ -48,7 +48,7 @@
 			{% if vehicles is not empty %}
 				{% for vehicle in vehicles %}
 					{% if vehicle.energy == "Electric" %}
-						<div class="card text-dark mx-2 mb-2 border border-3 border-info">
+						<div class="card cardHome text-dark mx-2 mb-2 border border-3 border-info">
 							<div id="cardGrid" class="container text-center">
 								<div id="cardCar">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#0dcaf0" class="bi bi-ev-front-fill" viewbox="0 0 16 16">
@@ -56,7 +56,7 @@
 									</svg>
 								</div>
 							{% else %}
-								<div class="card text-dark mx-2 mb-2">
+								<div class="cardHome text-dark mx-2 mb-2">
 									<div id="cardGrid" class="container text-center">
 										<div id="cardCar">
 											<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-car-front-fill" viewbox="0 0 16 16">
