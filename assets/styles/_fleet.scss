@@ -1,0 +1,10 @@
+.bloc-funnel {
+    a.btn:hover {
+        color: $light !important;
+        border: 1px solid $dark;
+    }
+    .active{
+        color: $light;
+        border: 1px solid $dark;
+    }
+}
