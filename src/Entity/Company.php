@@ -27,6 +27,15 @@ class Company
     #[ORM\OneToMany(mappedBy: 'company', targetEntity: Vehicle::class)]
     private Collection $vehicles;
 
+    #[ORM\Column(length: 255)]
+    private ?string $address = null;
+
+    #[ORM\Column]
+    private ?float $latitude = null;
+
+    #[ORM\Column]
+    private ?float $longitude = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -118,6 +127,42 @@ class Company
                 $vehicle->setCompany(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(float $longitude): self
+    {
+        $this->longitude = $longitude;
 
         return $this;
     }

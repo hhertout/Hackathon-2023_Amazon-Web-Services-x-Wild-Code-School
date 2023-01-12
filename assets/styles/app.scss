@@ -3,9 +3,14 @@
 
 body {
     font-family: $font-family-rg !important;
-    min-height: 100vh;
     background-color: $primary;
     color: $light;
+    display: block;
+    margin: 0;
+}
+
+main {
+    min-height: 80vh;
 }
 
 h1 {

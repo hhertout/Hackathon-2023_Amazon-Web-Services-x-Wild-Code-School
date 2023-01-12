@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+	<main>
+		<h1>Your fleet</h1>
+		<button class="btn btn-secondary text-light fw-bold">Add you vehicle</button>
+		<div class="bg-light rounded-4">
+			<table class="text-dark">
+				<thead>
+					<tr>
+						<th>Plate number</th>
+						<th>Model</th>
+						<th>Unavailable</th>
+						<th>Shareable</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>The table body</td>
+						<td>with two columns</td>
+						<td>The table body</td>
+						<td>with two columns</td>
+						<td>
+							<button class="btn">Edit</button>
+						</td>
+						<td>
+							<button class="btn">Delete</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+{% endblock %}
