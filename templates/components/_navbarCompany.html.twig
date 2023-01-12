@@ -28,13 +28,13 @@
 							{{app.user.email}}
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-							{% if is_granted("ROLE_COMPANY") %}
+							{# {% if is_granted("ROLE_COMPANY") %}
 								<li>
-									<a class="dropdown-item text-dark" href="{{path('app_company_home')}}">
+									<a class="dropdown-item text-dark" href="{{path('app_company_home', {'company': company.id})}}">
 										Dashboard
 									</a>
 								</li>
-							{% endif %}
+							{% endif %} #}
 							<li>
 								<a class="dropdown-item text-dark" href="{{path('app_logout')}}">
 									Logout
