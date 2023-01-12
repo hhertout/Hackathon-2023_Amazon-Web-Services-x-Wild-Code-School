@@ -6,23 +6,27 @@
 {% block content %}
 
 	<div class="container">
-		<div>
-			<a href="{{ path('app_account') }}" class="btn bg-secondary active">Home</a>
-			<a href="{{ path('app_reservation') }}" class="btn bg-secondary">My Reservations</a>
-			<a href="{{ path('app_account_info') }}" class="btn bg-secondary">My Infos</a>
+		<div class="mt-5">
+			<a href="{{ path('app_account') }}" class="btn bg-secondary active mx-2">Home</a>
+			<a href="{{ path('app_reservation') }}" class="btn bg-secondary mx-2">My Reservations</a>
+			<a href="{{ path('app_account_info') }}" class="btn bg-secondary mx-2">My Infos</a>
 		</div>
 
-		<div class="container bg-light text-dark mt-3 rounded">
-			<h1>Hello
+		<div class="container bg-light text-dark mt-3 p-3 rounded">
+			<h1 class="h1">Hello
 				{{ app.user.firstname }}, here's your dashboard</h1>
 
-			<article>
-				<div>Your last reservation :</div>
+			<article class="mt-4">
+				<div class="fw-bold mb-4">Your last reservation :</div>
 				<div>
+					{% if reservation is not null %}
 					<div>Reservation reference: {{ reservation.id }}</div>
 					<div>Vehicule reference: {{ reservation.vehicle.id }}</div>
 					<div>Departure : {{ reservation.rentedDate|date("m/d/Y H:i") }}</div>
 					<div>Arrival : {{ reservation.returnDate|date("m/d/Y H:i") }}</div>
+					{% else %}
+					<div class="mb-4">You haven't got any reservation.</div>
+					{% endif %}
 				</div>
 			</article>
 		</div>

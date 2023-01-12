@@ -1,0 +1,22 @@
+{% extends 'layoutUser.html.twig' %}
+
+{% block title %}
+	{{parent()}}| Statistics
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div>
+			<a href="{{ path('app_company_home', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Home</a>
+			<a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Fleet</a>
+            <a href="{{ path('app_company_request', {'company': company.id}) }}" class="btn btn-lg bg-secondary">Request</a>
+			<a href="{{ path('app_company_statistic', {'company': company.id}) }}" class="btn btn-lg bg-secondary active">Statistics</a>
+		</div>
+
+        <div class="container bg-light text-dark rounded p-2">
+		<h1 class="h1 text-center my-5">Statistics</h1>
+
+        {% block graph %}
+        {% endblock %}
+	</div>
+{% endblock %}

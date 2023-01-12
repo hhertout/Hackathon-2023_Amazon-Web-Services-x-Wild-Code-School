@@ -1,9 +1,9 @@
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a href="/" class="navbar-brand mb-0 h1">
-				<img src="" alt="" class="d-inline-block align-text-top">
-				ACS - Amazon Car Services
+			<a href="/" class="navbar-brand mb-0 h1 link-title">
+				<img src="{{asset('build/images/logos/logoACS.png')}}" alt="Logo Amazon Car Services" class="d-inline-block align-text-top logo-nav">
+				<span class="mx-3">Amazon Car Services</span>
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -12,38 +12,43 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="{{path('app_home')}}">Home</a>
+							<a class="nav-link" aria-current="page" href="{{path('app_home')}}">Search</a>
 						</li>
-					</ul>
-					{{ render(controller('App\\Controller\\HomeController::userCompany')) }}
-					<div class="dropdown">
-						{% if app.user %}
-							<a class="nav-link fw-bold text-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-								{{app.user.email}}
-							</a>
-							
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-								{% if is_granted("ROLE_COMPANY") %}
-									<li>
-										<a class="dropdown-item text-dark" href="{{path('app_company_home')}}">
-											Dashboard
-										</a>
-									</li>
-								{% endif %}
-								<li>
-									<a class="dropdown-item text-dark" href="{{path('app_logout')}}">
-										Logout
-									</a>
-									<a href="{{ path('app_account') }}" class="dropdown-item text-dark">My account</a>
-								</li>
-							</ul>
+						{% if is_granted("ROLE_COMPANY") %}
+							{{ render(controller('App\\Controller\\HomeController::userCompany')) }}
 						{% else %}
-							<a class="nav-link text-dark" href="{{path('app_login')}}">
-								Login
-							</a>
+							<li>
+								<a href="{{ path('app_account') }}" class="nav-link">My account</a>
+							</li>
 						{% endif %}
-					</div>
+					</ul>
+				</ul>
+				<div class="dropdown">
+					{% if app.user %}
+						<a class="nav-link fw-bold text-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+							{{app.user.email}}
+						</a>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<li>
+								<a class="dropdown-item text-dark" href="{{path('app_logout')}}">
+									<div class="d-flex align-items-center">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewbox="0 0 16 16">
+											<path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+											<path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+										</svg>
+										<span class="mx-2">Logout</span>
+									</div>
+								</a>
+							</li>
+						</ul>
+					{% else %}
+						<a class="nav-link text-dark" href="{{path('app_login')}}">
+							Login
+						</a>
+					{% endif %}
 				</div>
 			</div>
-		</nav>
-	</header>
+		</div>
+	</nav>
+</header>

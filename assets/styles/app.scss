@@ -1,6 +1,7 @@
 @import "root";
 @import "~bootstrap/scss/bootstrap";
 @import "footer";
+@import "navbar";
 
 body {
     font-family: $font-family-rg !important;
@@ -12,7 +13,7 @@ body {
 
 main {
     min-height: 80vh;
-    padding-block-start: 5rem;
+    margin-top: 2.5rem;
 }
 
 h1 {
@@ -20,6 +21,11 @@ h1 {
     font-weight: bold;
 }
 
+h2 {
+    font-family: $font-family-lt;
+}
+
 .bg-tertiary {
     background-color: $tertiary;
-  }
+}
+

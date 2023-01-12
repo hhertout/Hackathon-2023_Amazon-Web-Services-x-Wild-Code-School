@@ -21,7 +21,7 @@ class AccountController extends AbstractController
         $reservation = $reservationRepository->findBy(['user' => $userId], [], [1]);
 
         return $this->render('account/index.html.twig', [
-            'reservation' => $reservation[0]
+            'reservation' => $reservation[0] ?? null
         ]);
     }
 
