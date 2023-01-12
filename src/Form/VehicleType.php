@@ -43,7 +43,7 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     ]
                 ]
             )
-            ->add('nbSeat', IntegerType::class, [
+            ->add('nbDoor', IntegerType::class, [
                 'attr' => [
                     'class' => 'form-control mb-3',
                 ]

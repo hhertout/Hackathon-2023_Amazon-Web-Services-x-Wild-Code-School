@@ -22,7 +22,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setModel('Kangoo');
             $vehicle->setEnergy('Electric');
             $vehicle->setKilometers(rand(2300, 220000));
-            $vehicle->setNbSeat(3);
+            $vehicle->setNbDoor(3);
             $vehicle->setIsShared(false);
             $vehicle->setIsKaput(false);
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
@@ -41,7 +41,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setBrand('Peugeot');
             $vehicle->setModel('Partner');
             $vehicle->setEnergy('Gasoline');
-            $vehicle->setNbSeat(3);
+            $vehicle->setNbDoor(3);
             $vehicle->setKilometers(rand(2300, 220000));
             $vehicle->setIsShared(false);
             $vehicle->setIsKaput(false);
@@ -60,7 +60,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setBrand('Peugeot');
             $vehicle->setModel('308');
             $vehicle->setEnergy(self::ENERGY[array_rand(self::ENERGY)]);
-            $vehicle->setNbSeat(5);
+            $vehicle->setNbDoor(5);
             $vehicle->setIsShared(false);
             $vehicle->setKilometers(rand(2300, 220000));
             $vehicle->setIsKaput(false);
@@ -79,7 +79,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setBrand('Renault');
             $vehicle->setModel('Clio III');
             $vehicle->setEnergy('Diesel');
-            $vehicle->setNbSeat(5);
+            $vehicle->setNbDoor(5);
             $vehicle->setKilometers(rand(2300, 220000));
             $vehicle->setIsShared(false);
             $vehicle->setIsKaput(false);
@@ -99,7 +99,7 @@ class VehicleFixtures extends Fixture
         $vehicle->setBrand('Renault');
         $vehicle->setModel('Kangoo');
         $vehicle->setEnergy('Electric');
-        $vehicle->setNbSeat(3);
+        $vehicle->setNbDoor(3);
         $vehicle->setIsShared(false);
         $vehicle->setIsKaput(false);
         $vehicle->setKilometers(rand(2300, 220000));
@@ -117,7 +117,7 @@ class VehicleFixtures extends Fixture
         $vehicle->setBrand('Renault');
         $vehicle->setModel('Kangoo');
         $vehicle->setEnergy('Electric');
-        $vehicle->setNbSeat(3);
+        $vehicle->setNbDoor(3);
         $vehicle->setIsShared(false);
         $vehicle->setIsKaput(false);
         $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
@@ -135,7 +135,7 @@ class VehicleFixtures extends Fixture
         $vehicle->setBrand('Renault');
         $vehicle->setModel('Kangoo');
         $vehicle->setEnergy('Electric');
-        $vehicle->setNbSeat(3);
+        $vehicle->setNbDoor(3);
         $vehicle->setIsShared(false);
         $vehicle->setKilometers(rand(2300, 220000));
         $vehicle->setIsKaput(false);
@@ -153,7 +153,7 @@ class VehicleFixtures extends Fixture
         $vehicle->setBrand('Renault');
         $vehicle->setModel('Kangoo');
         $vehicle->setEnergy('Electric');
-        $vehicle->setNbSeat(3);
+        $vehicle->setNbDoor(3);
         $vehicle->setIsShared(true);
         $vehicle->setKilometers(rand(2300, 220000));
         $vehicle->setIsKaput(false);

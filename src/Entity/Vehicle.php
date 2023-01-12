@@ -25,7 +25,7 @@ class Vehicle
     private ?string $energy = null;
 
     #[ORM\Column]
-    private ?int $nbSeat = null;
+    private ?int $nbDoor = null;
 
     #[ORM\Column]
     private ?bool $is_shared = null;
@@ -106,14 +106,14 @@ class Vehicle
         return $this;
     }
 
-    public function getNbSeat(): ?int
+    public function getNbDoor(): ?int
     {
-        return $this->nbSeat;
+        return $this->nbDoor;
     }
 
-    public function setNbSeat(int $nbSeat): self
+    public function setNbDoor(int $nbDoor): self
     {
-        $this->nbSeat = $nbSeat;
+        $this->nbDoor = $nbDoor;
 
         return $this;
     }
