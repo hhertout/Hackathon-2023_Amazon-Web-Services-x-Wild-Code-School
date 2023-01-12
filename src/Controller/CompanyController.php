@@ -78,7 +78,7 @@ class CompanyController extends AbstractController
         $companyId = $company->getId();
         $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'is_shared' => false]);
 
-        return $this->render('company/fleetnotSharable.html.twig', [
+        return $this->render('company/fleetNotSharable.html.twig', [
             'company' => $company,
             'vehicles' => $vehicles
         ]);
@@ -119,8 +119,6 @@ class CompanyController extends AbstractController
         $availablePercent = $availableVehicules / $vehiculeCount * 100;
         $sharedPercent = $sharedVehicules / $vehiculeCount * 100;
         $kaputPercent = $kaputVehicules / $vehiculeCount * 100;
-
-        dump($sharedVehicules, $kaputVehicules);
 
         $chartIsAvailable = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
         $chartIsAvailable->setData([
@@ -173,6 +171,35 @@ class CompanyController extends AbstractController
             'chartIsAvailable' => $chartIsAvailable,
             'chartIsShared' => $chartIsShared,
             'chartIsKaput' => $chartIsKaput
+        ]);
+    }
+    #[Route('/reservations-statistics', name: 'app_company_reserv_statistic', methods: ['GET'])]
+    public function statisticsReservation(Company $company, ChartBuilderInterface $chartBuilder): Response
+    {
+        $chartReservation = $chartBuilder->createChart(Chart::TYPE_BAR);
+        $chartReservation->setData([
+            'labels' => ['Vehicles Available (%)', 'Vehicles Not Available (%)'],
+            'datasets' => [
+                [
+                    'label' => 'Available',
+                    'backgroundColor' => [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    'data' => [],
+                    "hoverOffset" => 8
+                ],
+            ],
+        ]);
+
+        return $this->render('company/reserv_stats.html.twig', [
+            'company' => $company,
+            'chartReservation' => $chartReservation,
         ]);
     }
 

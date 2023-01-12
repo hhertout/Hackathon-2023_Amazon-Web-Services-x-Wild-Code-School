@@ -43,12 +43,13 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     ]
                 ]
             )
-            ->add('nbSeat', IntegerType::class, [
+            ->add('nbDoor', IntegerType::class, [
                 'attr' => [
                     'class' => 'form-control mb-3',
                 ]
             ])
             ->add('is_shared', ChoiceType::class, [
+                'label' => 'The Vehicle can be rented by an other company ?',
                 'attr' => [
                     'class' => 'form-control mb-3',
                 ],
@@ -60,6 +61,7 @@ class VehicleType extends AbstractType implements FormTypeInterface
                 'expanded' => false,
             ])
             ->add('is_kaput', ChoiceType::class, [
+                'label' => "The vehicule is in maintenance ?",
                 'attr' => [
                     'class' => 'form-control mb-3',
                 ],

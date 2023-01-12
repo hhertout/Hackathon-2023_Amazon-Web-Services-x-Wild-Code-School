@@ -5,6 +5,7 @@
 				<th class="p-2">Ref</th>
 				<th class="p-2">Plate number</th>
 				<th class="p-2">Model</th>
+				<th class="p-2">Km</th>
 				<th class="p-2">Available</th>
 				<th class="p-2">Shared</th>
 				<th class="p-2"></th>
@@ -17,6 +18,7 @@
 					<td>{{vehicle.id}}</td>
 					<td>{{ vehicle.immatriculation|upper }}</td>
 					<td>{{ vehicle.model }}</td>
+					<td>{{ vehicle.kilometers|number_format(-3, '.') }}</td>
 					{% if vehicle.isAvailable == 1  %}
 						<td>
 							<div class="badge bg-success">Vehicle available</div>

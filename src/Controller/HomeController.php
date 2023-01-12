@@ -48,10 +48,13 @@ class HomeController extends AbstractController
         if ($form->isSubmitted()) {
             $carId = [];
             $energyArray = ['Diesel', 'Electric', 'Gasoline'];
-            $brandArray = ['Peugeot', 'Citroën', 'Renault', 'Volkswagen', 'BMW', 'Mercedes', 'Hyundai', 'Audi', 'Opel', 'Toyota', 'Ford', 'Honda', 'DS',];
+            $brandArray = ['Peugeot', 'Citroën', 'Renault', 'Volkswagen', 'BMW', 'Mercedes', 'Hyundai', 'Audi', 'Opel', 'Toyota', 'Ford', 'Honda', 'DS'];
+            $doorArray = ['3', '5'];
+            $gearboxArray = ['Automatic', 'Manual'];
             $startDate = $form->getData()['startDate'];
             $endDate = $form->getData()['endDate'];
             $sharable = $form->getData()['shared'];
+            dd($form->getData());
 
             if ($endDate && $startDate) {
                 //J'enregistre les dates en session pour les enregistrer dans l'order
@@ -80,6 +83,8 @@ class HomeController extends AbstractController
 
             $brand = $form->getData()['Brand'];
             $energy = $form->getData()['energy'];
+            $gearbox = $form->getData()['gearbox'];
+            $doorNumber = $form->getData()['door'];
 
             if ($sharable === true) {
                 $nearCompanies = $calculateDistance->checkDistances($user->getCompany(), $companyRepository->findAll());
@@ -102,7 +107,9 @@ class HomeController extends AbstractController
                 'company' => $user->getCompany(),
                 'isAvailable' => true,
                 'brand' => $brand ?? $brandArray,
-                'energy' => $energy ?? $energyArray
+                'energy' => $energy ?? $energyArray,
+                'gearbox' => $gearbox ?? $gearboxArray,
+                'door' => $doorNumber ?? $doorArray
             ]);
         } else {
             $vehicles = $vehicleRepository->findBy(['company' => $user->getCompany(), 'isAvailable' => true,]);
