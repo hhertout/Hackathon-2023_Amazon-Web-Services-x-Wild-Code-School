@@ -76,7 +76,7 @@ class CompanyController extends AbstractController
         $companyId = $company->getId();
         $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'is_shared' => false]);
 
-        return $this->render('company/fleetnotSharable.html.twig', [
+        return $this->render('company/fleetNotSharable.html.twig', [
             'company' => $company,
             'vehicles' => $vehicles
         ]);
