@@ -42,8 +42,7 @@ class Vehicle
     #[ORM\Column(nullable: true)]
     private ?int $autonomy = null;
 
-    #[ORM\OneToMany(mappedBy: 'vehicle', targetEntity: Reservation::class)]
-    
+    #[ORM\OneToMany(mappedBy: 'vehicle', targetEntity: Reservation::class, cascade: ['persist', 'remove'])]
     private Collection $reservations;
 
     #[ORM\Column(length: 100)]
