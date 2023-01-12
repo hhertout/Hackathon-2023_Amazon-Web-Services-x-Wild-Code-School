@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Company;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
+use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\VehicleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/dashboard/{company}')]
@@ -86,10 +89,71 @@ class CompanyController extends AbstractController
         ]);
     }
     #[Route('/statistics', name: 'app_company_statistic', methods: ['GET'])]
-    public function statistics(Company $company): Response
+    public function statistics(Company $company, ChartBuilderInterface $chartBuilder, VehicleRepository $vehicleRepository): Response
     {
+        $vehicles = $vehicleRepository->findBy(['company' => $company->getId()]);
+        $vehiculeCount = count($vehicles);
+        $availableVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'isAvailable' => true]));
+        $sharedVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'is_shared' => true ]));
+        $kaputVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'is_kaput' => true]));
+
+        $availablePercent = $availableVehicules / $vehiculeCount * 100;
+        $sharedPercent = $sharedVehicules / $vehiculeCount * 100;
+        $kaputPercent = $kaputVehicules / $vehiculeCount * 100;
+
+        dump($sharedVehicules, $kaputVehicules);
+    
+        $chartIsAvailable = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
+        $chartIsAvailable->setData([
+            'labels' => ['Vehicles Available (%)', 'Vehicles Not Available (%)'],
+            'datasets' => [
+                [
+                    'label' => 'Available',
+                    'backgroundColor' => [
+                        'green',
+                        'red'
+                      ],
+                    'data' => [$availablePercent, 100 - $availablePercent],
+                    "hoverOffset" => 8
+                ],
+            ],
+        ]);
+        $chartIsShared = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
+        $chartIsShared->setData([
+            'labels' => ['Vehicles Shared (%)', 'Vehicles Not Shared (%)'],
+            'datasets' => [
+                [
+                    'label' => 'Shared',
+                    'backgroundColor' => [
+                        'green',
+                        'red'
+                      ],
+                    'data' => [$sharedPercent, 100 - $sharedPercent],
+                    "hoverOffset" => 4
+                ],
+            ],
+        ]);
+        $chartIsKaput = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
+        $chartIsKaput->setData([
+            'labels' => ['Vehicles In Maintenance (%)', 'Vehicles In Service (%)'],
+            'datasets' => [
+                [
+                    'label' => 'Kaput',
+                    'backgroundColor' => [
+                        'red',
+                        'green'
+                      ],
+                    'data' => [$kaputPercent, 100 - $kaputPercent],
+                    "hoverOffset" => 4
+                ],
+            ],
+        ]);
+        
         return $this->render('company/stats.html.twig', [
-            'company' => $company
+            'company' => $company,
+            'chartIsAvailable' => $chartIsAvailable,
+            'chartIsShared' => $chartIsShared,
+            'chartIsKaput' => $chartIsKaput
         ]);
     }
 
