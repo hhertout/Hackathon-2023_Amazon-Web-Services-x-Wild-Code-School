@@ -50,7 +50,7 @@ class VehicleType extends AbstractType implements FormTypeInterface
             ])
             ->add('is_shared', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-control mx-2 mb-3',
+                    'class' => 'form-control mb-3',
                 ],
                 'choices' => [
                     'No' => false,
@@ -61,7 +61,7 @@ class VehicleType extends AbstractType implements FormTypeInterface
             ])
             ->add('is_kaput', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-control mx-2 mb-3',
+                    'class' => 'form-control mb-3',
                 ],
                 'choices' => [
                     'No' => false,
@@ -84,9 +84,6 @@ class VehicleType extends AbstractType implements FormTypeInterface
                 'type',
                 ChoiceType::class,
                 [
-                    'attr' => [
-                        'class' => 'form-control',
-                    ],
                     'choices' => [
                         'utility' => 'utility',
                         'SUV' => 'SUV',
@@ -118,7 +115,7 @@ class VehicleType extends AbstractType implements FormTypeInterface
             //->add('poster')
             ->add('isAvailable', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-control mx-2 mb-4',
+                    'class' => 'form-control mb-4',
                 ],
                 'choices' => [
                     'No' => false,
