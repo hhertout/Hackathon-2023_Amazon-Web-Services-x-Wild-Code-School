@@ -58,6 +58,33 @@ class UserFixtures extends Fixture
         $this->addReference('randomReserver_1', $randomReserver);
         $manager->persist($randomReserver);
 
+
+        //L'entreprise pour la démo
+        $demoCompany = new User();
+        $demoCompany->setRoles(['ROLE_COMPANY']);
+        $demoCompany->setEmail('amazon@gmail.com');
+        $demoCompany->setFirstname('Jeff');
+        $demoCompany->setLastname('Bezos');
+        $demoCompany->setPhoneNumber('0682253698');
+        $password = $this->passwordHasher->hashPassword($demoCompany, 'password');
+        $demoCompany->setPassword($password);
+        $demoCompany->setCompany($this->getReference('company_2'));
+        $this->addReference('demo_company', $demoCompany);
+        $manager->persist($demoCompany);
+
+        //Le user pour la démo : facebook
+        $demoEmployee = new User();
+        $demoEmployee->setRoles(['ROLE_EMPLOYEE']);
+        $demoEmployee->setEmail('facebook@gmail.com');
+        $demoEmployee->setFirstname('Mark');
+        $demoEmployee->setLastname('Zuckerberg');
+        $demoEmployee->setPhoneNumber('0683453728');
+        $password = $this->passwordHasher->hashPassword($demoEmployee, 'password');
+        $demoEmployee->setPassword($password);
+        $demoEmployee->setCompany($this->getReference('company_11'));
+        $this->addReference('demo_employee', $demoEmployee);
+        $manager->persist($demoEmployee);
+
         $admin = new User();
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setEmail('admin@aws.com');

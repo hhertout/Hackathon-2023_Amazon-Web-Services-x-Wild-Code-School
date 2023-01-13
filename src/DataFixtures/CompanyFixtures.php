@@ -29,7 +29,7 @@ class CompanyFixtures extends Fixture
     {
         $faker = Factory::create();
         $i = 0;
-        foreach(self::COMPANY as $name => $logo) {
+        foreach (self::COMPANY as $name => $logo) {
             $company = new Company();
             $company->setName($name);
             $company->setSIRET($faker->numberBetween(1111111111111, 9999999999999));
@@ -72,6 +72,18 @@ class CompanyFixtures extends Fixture
         $company->setAddress('76 Rue de Courtiras, 41100 Vendôme');
         $company->setLatitude($this->hereMapAPI->geolocateViaAddress($company->getAddress())['lat']);
         $company->setLongitude($this->hereMapAPI->geolocateViaAddress($company->getAddress())['lng']);
+
+        $manager->persist($company);
+
+        //Company 10 : Facebook qui est à côté d'Amazon '30 Rue du Canal, 44210 Pornic'
+        $company = new Company();
+        $company->setName('Facebook');
+        $company->setSIRET($faker->numberBetween(1111111111111, 9999999999999));
+        $this->addReference('company_' . 11, $company);
+        $company->setAddress('13 Rue du Val Saint-Martin, 44210 Pornic');
+        $company->setLatitude($this->hereMapAPI->geolocateViaAddress($company->getAddress())['lat']);
+        $company->setLongitude($this->hereMapAPI->geolocateViaAddress($company->getAddress())['lng']);
+        $company->setLogo('https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png');
 
         $manager->persist($company);
 

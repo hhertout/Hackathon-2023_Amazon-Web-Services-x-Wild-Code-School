@@ -52,7 +52,7 @@ class SearchFormType extends AbstractType implements FormTypeInterface
                     'All' => null,
                     'Diesel' => 'Diesel',
                     'Electric' => 'Electric',
-                    'Gasoline' => 'gasoline'
+                    'Gasoline' => 'Gasoline'
                 ],
                 'multiple' => false,
                 'expanded' => false,

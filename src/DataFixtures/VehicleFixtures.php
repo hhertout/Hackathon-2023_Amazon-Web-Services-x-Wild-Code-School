@@ -10,12 +10,12 @@ use Faker\Factory;
 class VehicleFixtures extends Fixture
 {
     public const NB_VEHICLE_MODEL = 120;
-    public const ENERGY = ['Gazoline', 'Electric', 'Diesel'];
+    public const ENERGY = ['Gasoline', 'Electric', 'Diesel'];
 
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-
+        //immatriculation AB-561-QT
         for ($i = 0; $i < self::NB_VEHICLE_MODEL; $i++) {
             $vehicle = new Vehicle();
             $vehicle->setBrand('Renault');
@@ -208,6 +208,26 @@ class VehicleFixtures extends Fixture
         $vehicle->setCompany($this->getReference('company_' . '9'));
         $vehicle->setIsSharedNow(false);
         $this->addReference('Clio_' . 123, $vehicle);
+
+        $manager->persist($vehicle);
+
+        //vehicule sharable d'amazon pour la demo
+        $vehicle = new Vehicle();
+        $vehicle->setBrand('Honda');
+        $vehicle->setModel('Civic');
+        $vehicle->setEnergy('Gazoline');
+        $vehicle->setNbDoor(3);
+        $vehicle->setIsShared(true);
+        $vehicle->setKilometers(rand(2300, 220000));
+        $vehicle->setIsKaput(false);
+        $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
+        $vehicle->setAutonomy(314);
+        $vehicle->setType('Sedan');
+        $vehicle->setGearbox('Automatic');
+        $vehicle->setIsAvailable(true);
+        $vehicle->setCompany($this->getReference('company_2'));
+        $vehicle->setIsSharedNow(false);
+        $this->addReference('Kangoo_' . 124, $vehicle);
 
         $manager->persist($vehicle);
 

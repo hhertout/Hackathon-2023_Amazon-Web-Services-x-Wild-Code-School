@@ -35,7 +35,7 @@ class VehicleType extends AbstractType implements FormTypeInterface
                     'choices' => [
                         'diesel' => 'diesel',
                         'electric' => 'electric',
-                        'gazoline' => 'gasoline'
+                        'gasoline' => 'gasoline'
                     ],
                     'multiple' => false,
                     'expanded' => false,
