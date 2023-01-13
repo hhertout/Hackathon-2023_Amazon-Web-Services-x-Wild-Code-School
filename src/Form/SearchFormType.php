@@ -85,7 +85,7 @@ class SearchFormType extends AbstractType implements FormTypeInterface
                 ],
                 'multiple' => false,
                 'expanded' => false,
-                'label' => 'Show Shared Vehicle',
+                'label' => 'Show shared vehicles',
             ]);
     }
     public function configureOptions(OptionsResolver $resolver): void
