@@ -77,13 +77,12 @@ class CompanyFixtures extends Fixture
 
         //Company 10 : Facebook qui est à côté d'Amazon '30 Rue du Canal, 44210 Pornic'
         $company = new Company();
-        $company->setName('Facebook');
+        $company->setName('Instragram');
         $company->setSIRET($faker->numberBetween(1111111111111, 9999999999999));
         $this->addReference('company_' . 11, $company);
         $company->setAddress('13 Rue du Val Saint-Martin, 44210 Pornic');
         $company->setLatitude($this->hereMapAPI->geolocateViaAddress($company->getAddress())['lat']);
         $company->setLongitude($this->hereMapAPI->geolocateViaAddress($company->getAddress())['lng']);
-        $company->setLogo('https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png');
 
         $manager->persist($company);
 

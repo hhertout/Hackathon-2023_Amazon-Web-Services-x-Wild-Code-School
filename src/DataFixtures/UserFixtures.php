@@ -75,7 +75,7 @@ class UserFixtures extends Fixture
         //Le user pour la démo : facebook
         $demoEmployee = new User();
         $demoEmployee->setRoles(['ROLE_EMPLOYEE']);
-        $demoEmployee->setEmail('facebook@gmail.com');
+        $demoEmployee->setEmail('instagram@gmail.com');
         $demoEmployee->setFirstname('Mark');
         $demoEmployee->setLastname('Zuckerberg');
         $demoEmployee->setPhoneNumber('0683453728');
