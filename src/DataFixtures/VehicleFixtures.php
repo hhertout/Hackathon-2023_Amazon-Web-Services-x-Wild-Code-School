@@ -29,8 +29,8 @@ class VehicleFixtures extends Fixture
             $vehicle->setAutonomy(314);
             $vehicle->setType('Utility');
             $vehicle->setGearbox('Automatic');
-            $vehicle->setIsAvailable((bool)rand(0, 1));
             $vehicle->setIsSharedNow((bool)rand(0, 1));
+            $vehicle->setIsAvailable((bool)rand(0, 1));
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $this->addReference('Kangoo_' . $i, $vehicle);
 
