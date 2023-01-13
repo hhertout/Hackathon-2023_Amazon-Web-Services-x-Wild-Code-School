@@ -290,6 +290,7 @@ class CompanyController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $vehicle->setCompany($company);
+            $vehicle->setIsSharedNow(false);
             $vehicleRepository->save($vehicle, true);
 
             return $this->redirectToRoute('app_company_home', ['company' => $company->getId()], Response::HTTP_SEE_OTHER);
@@ -317,6 +318,7 @@ class CompanyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $vehicle->setIsSharedNow(false);
             $vehicleRepository->save($vehicle, true);
 
 
