@@ -18,8 +18,7 @@ class SearchFormType extends AbstractType implements FormTypeInterface
             ->add('startDate', DateTimeType::class, [
                 'label' => 'Starting Date',
                 'attr'   => ['min' => (new \DateTime())->format('Y-m-d H:i')],
-                'widget' => 'single_text',
-                'data' => new DateTime()
+                'widget' => 'single_text'
             ])
             ->add('endDate', DateTimeType::class, [
                 'label' => 'End Date',
