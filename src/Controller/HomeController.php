@@ -101,6 +101,10 @@ class HomeController extends AbstractController
                         'company' => $otherNearCompagny,
                         'is_shared' => true,
                         'isAvailable' => true,
+                        'brand' => $brand ?? $brandArray,
+                        'energy' => $energy ?? $energyArray,
+                        'gearbox' => $gearbox ?? $gearboxArray,
+                        'nbDoor' => $doorNumber ?? $doorArray
                     ]));
                 }
             }
