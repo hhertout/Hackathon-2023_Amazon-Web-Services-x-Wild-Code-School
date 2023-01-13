@@ -113,6 +113,7 @@ class HomeController extends AbstractController
         } else {
             $vehicles = $vehicleRepository->findBy(['company' => $user->getCompany(), 'isAvailable' => true,]);
         }
+        
         return $this->render('home/index.html.twig', [
             'searchForm' => $form->createView(),
             'vehicles' => $vehicles,

@@ -16,7 +16,7 @@ class CompanyFixtures extends Fixture
         'Amazon' => 'https://cdn4.iconfinder.com/data/icons/social-media-2146/512/31_social-512.png',
         'Uber' => 'https://www.logo.wine/a/logo/Uber/Uber-White-Dark-Background-Logo.wine.svg',
         'Total' => 'https://seeklogo.com/images/T/Total_Oil_2007-logo-2B2DA3BF11-seeklogo.com.png',
-        'deliveroo' => 'https://e7.pngegg.com/pngimages/987/35/png-clipart-deliveroo-round-logo-tech-companies-thumbnail.png',
+        'deliveroo' => 'https://media.graphiline.com/graphiline/23792/logo-sign-deliveroo-2.png',
         'Région Centre' => 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/da/Logo_Centre_Val_Loire_2015.svg/1200px-Logo_Centre_Val_Loire_2015.svg.png'
     ];
 
