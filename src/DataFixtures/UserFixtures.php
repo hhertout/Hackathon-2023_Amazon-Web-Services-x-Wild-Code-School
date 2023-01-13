@@ -11,7 +11,7 @@ use Faker\Factory;
 class UserFixtures extends Fixture
 {
     private UserPasswordHasherInterface $passwordHasher;
-    public const NB_COMPANY = 6;
+    public const NB_COMPANY = 7;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
