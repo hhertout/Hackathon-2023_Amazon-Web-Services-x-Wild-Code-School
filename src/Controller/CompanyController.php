@@ -7,7 +7,9 @@ use App\Entity\Company;
 use App\Entity\Reservation;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
+use App\Repository\CompanyRepository;
 use App\Repository\ReservationRepository;
+use App\Repository\UserRepository;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\VehicleRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -102,6 +104,22 @@ class CompanyController extends AbstractController
             return $this->redirectToRoute('app_company_request', ['company' => $company->getId()], Response::HTTP_SEE_OTHER);
         }
         return $this->render('company/reservationRequest.html.twig', [
+            'company' => $company,
+            'reservations' => $reservations
+        ]);
+    }
+
+    #[Route('/orders', name: 'app_company_order')]
+    public function orders(Company $company, ReservationRepository $reservationRepository, UserRepository $userRepository, Request $request): Response
+    {
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+        $users = $userRepository->findBy(['company' => $company]);
+        foreach ($users as $user) {
+            $reservations = $reservationRepository->findBy(['user' => $user]);
+        }
+
+        return $this->render('company/orders.html.twig', [
             'company' => $company,
             'reservations' => $reservations
         ]);
@@ -209,7 +227,7 @@ class CompanyController extends AbstractController
         $chartReservation->setData([
             'labels' => [
                 $dateTime,
-                $dateTime1last, 
+                $dateTime1last,
                 $dateTime2last,
                 $dateTime3last,
                 $dateTime4last,
