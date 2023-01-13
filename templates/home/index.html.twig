@@ -56,7 +56,10 @@
 				<img class="iconSearch" src="{{ asset('build/images/icons/gearbox.svg') }}" alt="">
 			</div>
 			<div>
-				Gearbox
+				{{ form_label(searchForm.gearbox) }}
+			</div>
+			<div>
+				{{ form_widget(searchForm.gearbox) }}
 			</div>
 		</div>
 		<div id="searchSeat" class="text-center">
@@ -64,9 +67,24 @@
 				<img class="iconSearch" src="{{ asset('build/images/icons/seat.svg') }}" alt="">
 			</div>
 			<div>
-				Doors
+				{{ form_label(searchForm.door) }}
+			</div>
+			<div>
+				{{ form_widget(searchForm.door) }}
 			</div>
 		</div>
+		<div id="searchShare" class="text-center">
+			<svg xmlns="http://www.w3.org/2000/svg" width="65" height="56" fill="currentColor" class="bi bi-share-fill" viewbox="0 0 16 16">
+				<path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
+			</svg>
+			<div>
+				{{ form_label(searchForm.shared) }}
+			</div>
+			<div>
+				{{ form_widget(searchForm.shared) }}
+			</div>
+		</div>
+
 		<div id="searchButton" class="text-center align-self-center">
 			<button type="submit" id="search" class="btn btn-lg btn-secondary">Search</button>
 			{{ form_end(searchForm) }}
