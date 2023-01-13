@@ -60,6 +60,9 @@ class Vehicle
     #[ORM\Column(nullable: true)]
     private ?int $kilometers = null;
 
+    #[ORM\Column]
+    private ?bool $isSharedNow = null;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -264,6 +267,18 @@ class Vehicle
     public function setKilometers(?int $kilometers): self
     {
         $this->kilometers = $kilometers;
+
+        return $this;
+    }
+
+    public function isIsSharedNow(): ?bool
+    {
+        return $this->isSharedNow;
+    }
+
+    public function setIsSharedNow(bool $isSharedNow): self
+    {
+        $this->isSharedNow = $isSharedNow;
 
         return $this;
     }

@@ -30,6 +30,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setType('Utility');
             $vehicle->setGearbox('Automatic');
             $vehicle->setIsAvailable((bool)rand(0, 1));
+            $vehicle->setIsSharedNow((bool)rand(0, 1));
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $this->addReference('Kangoo_' . $i, $vehicle);
 
@@ -50,6 +51,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setType('Utility');
             $vehicle->setGearbox('Manual');
             $vehicle->setIsAvailable((bool)rand(0, 1));
+            $vehicle->setIsSharedNow((bool)rand(0, 1));
             $this->addReference('Partner_' . $i, $vehicle);
 
             $manager->persist($vehicle);
@@ -69,6 +71,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setType('Urban');
             $vehicle->setGearbox('Automatic');
             $vehicle->setIsAvailable((bool)rand(0, 1));
+            $vehicle->setIsSharedNow((bool)rand(0, 1));
             $this->addReference('308_' . $i, $vehicle);
 
             $manager->persist($vehicle);
@@ -89,6 +92,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setGearbox('Manual');
             $vehicle->setIsShared((bool)rand(0, 1));
             $vehicle->setIsAvailable((bool)rand(0, 1));
+            $vehicle->setIsSharedNow((bool)rand(0, 1));
             $this->addReference('Clio_' . $i, $vehicle);
 
             $manager->persist($vehicle);
@@ -111,6 +115,7 @@ class VehicleFixtures extends Fixture
         $vehicle->setIsAvailable((bool)rand(0, 1));
         $vehicle->setIsKaput(true);
         $vehicle->setCompany($this->getReference('company_' . '1'));
+        $vehicle->setIsSharedNow((bool)rand(0, 1));
         $this->addReference('Kangoo_' . 101, $vehicle);
 
         $manager->persist($vehicle);
@@ -129,6 +134,7 @@ class VehicleFixtures extends Fixture
         $vehicle->setGearbox('Automatic');
         $vehicle->setIsAvailable((bool)rand(0, 1));
         $vehicle->setCompany($this->getReference('company_' . '8'));
+        $vehicle->setIsSharedNow((bool)rand(0, 1));
         $this->addReference('Clio_' . 101, $vehicle);
 
         $manager->persist($vehicle);
@@ -147,6 +153,7 @@ class VehicleFixtures extends Fixture
         $vehicle->setGearbox('Automatic');
         $vehicle->setIsAvailable((bool)rand(0, 1));
         $vehicle->setCompany($this->getReference('company_' . '9'));
+        $vehicle->setIsSharedNow((bool)rand(0, 1));
         $this->addReference('Kangoo_' . 102, $vehicle);
 
         $manager->persist($vehicle);
@@ -165,6 +172,7 @@ class VehicleFixtures extends Fixture
         $vehicle->setGearbox('Automatic');
         $vehicle->setIsAvailable((bool)rand(0, 1));
         $vehicle->setCompany($this->getReference('company_' . '9'));
+        $vehicle->setIsSharedNow((bool)rand(0, 1));
         $this->addReference('Clio_' . 102, $vehicle);
 
         $manager->persist($vehicle);
