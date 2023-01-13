@@ -112,7 +112,7 @@ class CompanyController extends AbstractController
         ]);
     }
 
-    #[Route('/orders', name: 'app_company_order')]
+    #[Route('/orders', name: 'app_company_orders')]
     public function orders(Company $company, ReservationRepository $reservationRepository, UserRepository $userRepository, Request $request): Response
     {
         /** @var \App\Entity\User $user */
