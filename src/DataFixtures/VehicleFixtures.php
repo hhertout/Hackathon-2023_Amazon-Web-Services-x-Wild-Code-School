@@ -23,14 +23,19 @@ class VehicleFixtures extends Fixture
             $vehicle->setEnergy('Electric');
             $vehicle->setKilometers(rand(2300, 220000));
             $vehicle->setNbDoor(3);
-            $vehicle->setIsShared(false);
             $vehicle->setIsKaput(false);
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
             $vehicle->setAutonomy(314);
             $vehicle->setType('Utility');
             $vehicle->setGearbox('Automatic');
             $vehicle->setIsSharedNow((bool)rand(0, 1));
-            $vehicle->setIsAvailable((bool)rand(0, 1));
+            if ($vehicle->isIsSharedNow() === true) {
+                $vehicle->setIsAvailable(false);
+                $vehicle->setIsShared(false);
+            } else {
+                $vehicle->setIsAvailable(true);
+                $vehicle->setIsShared(false);
+            }
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $this->addReference('Kangoo_' . $i, $vehicle);
 
@@ -44,14 +49,19 @@ class VehicleFixtures extends Fixture
             $vehicle->setEnergy('Gasoline');
             $vehicle->setNbDoor(3);
             $vehicle->setKilometers(rand(2300, 220000));
-            $vehicle->setIsShared(false);
             $vehicle->setIsKaput(false);
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $vehicle->setType('Utility');
             $vehicle->setGearbox('Manual');
-            $vehicle->setIsAvailable((bool)rand(0, 1));
             $vehicle->setIsSharedNow((bool)rand(0, 1));
+            if ($vehicle->isIsSharedNow() === true) {
+                $vehicle->setIsAvailable(false);
+                $vehicle->setIsShared(false);
+            } else {
+                $vehicle->setIsAvailable(true);
+                $vehicle->setIsShared(false);
+            }
             $this->addReference('Partner_' . $i, $vehicle);
 
             $manager->persist($vehicle);
@@ -63,15 +73,20 @@ class VehicleFixtures extends Fixture
             $vehicle->setModel('308');
             $vehicle->setEnergy(self::ENERGY[array_rand(self::ENERGY)]);
             $vehicle->setNbDoor(5);
-            $vehicle->setIsShared(false);
             $vehicle->setKilometers(rand(2300, 220000));
             $vehicle->setIsKaput(false);
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $vehicle->setType('Urban');
             $vehicle->setGearbox('Automatic');
-            $vehicle->setIsAvailable((bool)rand(0, 1));
             $vehicle->setIsSharedNow((bool)rand(0, 1));
+            if ($vehicle->isIsSharedNow() === true) {
+                $vehicle->setIsAvailable(false);
+                $vehicle->setIsShared(false);
+            } else {
+                $vehicle->setIsAvailable(true);
+                $vehicle->setIsShared(true);
+            }
             $this->addReference('308_' . $i, $vehicle);
 
             $manager->persist($vehicle);
@@ -84,15 +99,19 @@ class VehicleFixtures extends Fixture
             $vehicle->setEnergy('Diesel');
             $vehicle->setNbDoor(5);
             $vehicle->setKilometers(rand(2300, 220000));
-            $vehicle->setIsShared(false);
             $vehicle->setIsKaput(false);
             $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $vehicle->setType('Urban');
             $vehicle->setGearbox('Manual');
-            $vehicle->setIsShared((bool)rand(0, 1));
-            $vehicle->setIsAvailable((bool)rand(0, 1));
             $vehicle->setIsSharedNow((bool)rand(0, 1));
+            if ($vehicle->isIsSharedNow() === true) {
+                $vehicle->setIsAvailable(false);
+                $vehicle->setIsShared(false);
+            } else {
+                $vehicle->setIsAvailable(true);
+                $vehicle->setIsShared(true);
+            }
             $this->addReference('Clio_' . $i, $vehicle);
 
             $manager->persist($vehicle);
@@ -105,17 +124,22 @@ class VehicleFixtures extends Fixture
         $vehicle->setModel('Kangoo');
         $vehicle->setEnergy('Electric');
         $vehicle->setNbDoor(3);
-        $vehicle->setIsShared(false);
         $vehicle->setIsKaput(false);
         $vehicle->setKilometers(rand(2300, 220000));
         $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
         $vehicle->setAutonomy(314);
         $vehicle->setType('Utility');
         $vehicle->setGearbox('Automatic');
-        $vehicle->setIsAvailable((bool)rand(0, 1));
+        $vehicle->setIsSharedNow((bool)rand(0, 1));
+        if ($vehicle->isIsSharedNow() === true) {
+            $vehicle->setIsAvailable(false);
+            $vehicle->setIsShared(false);
+        } else {
+            $vehicle->setIsAvailable(true);
+            $vehicle->setIsShared(true);
+        }
         $vehicle->setIsKaput(true);
         $vehicle->setCompany($this->getReference('company_' . '1'));
-        $vehicle->setIsSharedNow((bool)rand(0, 1));
         $this->addReference('Kangoo_' . 101, $vehicle);
 
         $manager->persist($vehicle);
@@ -125,16 +149,21 @@ class VehicleFixtures extends Fixture
         $vehicle->setModel('Kangoo');
         $vehicle->setEnergy('Electric');
         $vehicle->setNbDoor(3);
-        $vehicle->setIsShared(false);
         $vehicle->setIsKaput(false);
         $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
         $vehicle->setAutonomy(314);
         $vehicle->setKilometers(rand(2300, 220000));
         $vehicle->setType('Utility');
         $vehicle->setGearbox('Automatic');
-        $vehicle->setIsAvailable((bool)rand(0, 1));
-        $vehicle->setCompany($this->getReference('company_' . '8'));
         $vehicle->setIsSharedNow((bool)rand(0, 1));
+        if ($vehicle->isIsSharedNow() === true) {
+            $vehicle->setIsAvailable(false);
+            $vehicle->setIsShared(false);
+        } else {
+            $vehicle->setIsAvailable(true);
+            $vehicle->setIsShared(true);
+        }
+        $vehicle->setCompany($this->getReference('company_' . '8'));
         $this->addReference('Clio_' . 101, $vehicle);
 
         $manager->persist($vehicle);
@@ -144,16 +173,21 @@ class VehicleFixtures extends Fixture
         $vehicle->setModel('Kangoo');
         $vehicle->setEnergy('Electric');
         $vehicle->setNbDoor(3);
-        $vehicle->setIsShared(false);
         $vehicle->setKilometers(rand(2300, 220000));
         $vehicle->setIsKaput(false);
         $vehicle->setImmatriculation($faker->lexify('??') . '-' . $faker->randomNumber(3, true) . '-' . $faker->lexify('??'));
         $vehicle->setAutonomy(314);
         $vehicle->setType('Utility');
         $vehicle->setGearbox('Automatic');
-        $vehicle->setIsAvailable((bool)rand(0, 1));
-        $vehicle->setCompany($this->getReference('company_' . '9'));
         $vehicle->setIsSharedNow((bool)rand(0, 1));
+        if ($vehicle->isIsSharedNow() === true) {
+            $vehicle->setIsAvailable(false);
+            $vehicle->setIsShared(false);
+        } else {
+            $vehicle->setIsAvailable(true);
+            $vehicle->setIsShared(true);
+        }
+        $vehicle->setCompany($this->getReference('company_' . '9'));
         $this->addReference('Kangoo_' . 102, $vehicle);
 
         $manager->persist($vehicle);
@@ -170,9 +204,9 @@ class VehicleFixtures extends Fixture
         $vehicle->setAutonomy(314);
         $vehicle->setType('Utility');
         $vehicle->setGearbox('Automatic');
-        $vehicle->setIsAvailable((bool)rand(0, 1));
+        $vehicle->setIsAvailable(true);
         $vehicle->setCompany($this->getReference('company_' . '9'));
-        $vehicle->setIsSharedNow((bool)rand(0, 1));
+        $vehicle->setIsSharedNow(false);
         $this->addReference('Clio_' . 102, $vehicle);
 
         $manager->persist($vehicle);
