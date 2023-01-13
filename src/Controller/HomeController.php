@@ -145,7 +145,7 @@ class HomeController extends AbstractController
             $reservationRepository->save($reservation, true);
             $session->remove('vehicleRentDateStart');
             $session->remove('vehicleRentEndDate');
-
+            $this->addFlash('success', 'Your order has been registered');
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('company/newReservation.html.twig', [
