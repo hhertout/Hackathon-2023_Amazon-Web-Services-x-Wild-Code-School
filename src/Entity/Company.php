@@ -39,6 +39,9 @@ class Company
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Reservation::class)]
     private Collection $reservations;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $logo = null;
+
 
     public function __construct()
     {
@@ -198,6 +201,18 @@ class Company
                 $reservation->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
 
         return $this;
     }
