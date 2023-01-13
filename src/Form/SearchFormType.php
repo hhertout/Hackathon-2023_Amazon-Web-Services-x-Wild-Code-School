@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,13 +17,13 @@ class SearchFormType extends AbstractType implements FormTypeInterface
         $builder
             ->add('startDate', DateTimeType::class, [
                 'label' => 'Starting Date',
-                'attr'   => ['min' => ( new \DateTime() )->format('Y-m-d H:i')],
-                'widget' => 'single_text',
+                'attr'   => ['min' => (new \DateTime())->format('Y-m-d H:i')],
+                'widget' => 'single_text'
             ])
             ->add('endDate', DateTimeType::class, [
                 'label' => 'End Date',
-                'attr'   => ['min' => ( new \DateTime() )->format('Y-m-d H:i')],
-                'widget' => 'single_text',
+                'attr'   => ['min' => (new \DateTime())->format('Y-m-d H:i')],
+                'widget' => 'single_text'
             ])
             ->add('Brand', ChoiceType::class, [
                 'choices' => [

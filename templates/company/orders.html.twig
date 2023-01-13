@@ -31,7 +31,7 @@
 					<span class="mx-2">Request</span>
 				</div>
 			</a>
-			<a href="{# {{ path('app_company_orders', {'company': company.id}) }} #}" class="btn btn-lg bg-secondary active">
+			<a href="{{ path('app_company_orders', {'company': company.id}) }}" class="btn btn-lg bg-secondary active">
 				<div class="d-flex align-items-center">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-task" viewbox="0 0 16 16">
 						<path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
@@ -52,7 +52,10 @@
 			</a>
 		</div>
 		<div class="bg-light text-dark rounded-3 p-2">
-			<h1 class="h1 text-center my-5">Waiting orders</h1>
+			<h1 class="h1 text-center my-5">
+				{{company.name}}
+				orders
+			</h1>
 			<table class="w-100 text-center">
 				<thead class="border-bottom">
 					<tr class="bg-primary text-light">
@@ -62,7 +65,6 @@
 						<th class="p-2">Company</th>
 						<th class="p-2">Start</th>
 						<th class="p-2">End</th>
-						<th class="p-2">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -74,19 +76,6 @@
 							<td>{{reservation.user.company.name}}</td>
 							<td>{{reservation.rentedDate|date('Y-m-d')}}</td>
 							<td>{{reservation.returnDate|date('Y-m-d')}}</td>
-							<td>
-								{% if reservation.state is same as(true) %}
-									<div class="badge bg-success">Order approved</div>
-								{% elseif reservation.state is same as(false) %}
-									<div class="badge bg-danger">Order denied</div>
-								{% else %}
-									<form id="validation" action="" method="POST">
-										<input class="btn btn-success" name="validate" type="submit" value="Validate">
-										<input name="reservation-id" type="hidden" value="{{reservation.id}}">
-										<input class="btn btn-danger" name="reject" type="submit" value="Reject">
-									</form>
-								{% endif %}
-							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
