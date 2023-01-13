@@ -32,7 +32,7 @@ class CompanyController extends AbstractController
             'company' => $company,
             'numberOfCar' => $numberOfCar,
             'reservationNumber' => $reservationNumber,
-            'sharedCar' => count($vehicleRepository->findBy(['company' => $companyId, 'is_shared' => true]))
+            'sharedCar' => count($vehicleRepository->findBy(['company' => $companyId, 'isSharedNow' => true]))
         ]);
     }
     #[Route('/fleet', name: 'app_company_fleet', methods: ['GET'])]
@@ -70,7 +70,7 @@ class CompanyController extends AbstractController
     public function fleetSharable(Company $company, VehicleRepository $vehicleRepository): Response
     {
         $companyId = $company->getId();
-        $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'is_shared' => true]);
+        $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'isSharedNow' => true]);
 
         return $this->render('company/fleetSharable.html.twig', [
             'company' => $company,
@@ -81,7 +81,7 @@ class CompanyController extends AbstractController
     public function fleetnotSharable(Company $company, VehicleRepository $vehicleRepository): Response
     {
         $companyId = $company->getId();
-        $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'is_shared' => false]);
+        $vehicles = $vehicleRepository->findBy(['company' => $companyId, 'isSharedNow' => false]);
 
         return $this->render('company/fleetNotSharable.html.twig', [
             'company' => $company,
@@ -134,7 +134,7 @@ class CompanyController extends AbstractController
         $vehicles = $vehicleRepository->findBy(['company' => $company->getId()]);
         $vehiculeCount = count($vehicles);
         $availableVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'isAvailable' => true]));
-        $sharedVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'is_shared' => true]));
+        $sharedVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'isSharedNow' => true]));
         $kaputVehicules = count($vehicleRepository->findBy(['company' => $company->getId(), 'is_kaput' => true]));
 
         $availablePercent = $availableVehicules / $vehiculeCount * 100;
@@ -223,8 +223,6 @@ class CompanyController extends AbstractController
         $dateTime11last = $dateTime11last->format('M-Y');
         $dateTime12last = new DateTime('-12 month');
         $dateTime12last = $dateTime12last->format('M-Y');
-
-        dump(count($reservationRepository->findBy(['rentedDate' => new DateTime('-2 month')])));
 
         $chartReservation = $chartBuilder->createChart(Chart::TYPE_BAR);
         $chartReservation->setData([
