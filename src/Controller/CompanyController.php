@@ -148,7 +148,7 @@ class CompanyController extends AbstractController
                 [
                     'label' => 'Available',
                     'backgroundColor' => [
-                        'green',
+                        '#3EDE7E',
                         'red'
                     ],
                     'data' => [$availablePercent, 100 - $availablePercent],
@@ -163,7 +163,7 @@ class CompanyController extends AbstractController
                 [
                     'label' => 'Shared',
                     'backgroundColor' => [
-                        'green',
+                        '#47EEFF',
                         'red'
                     ],
                     'data' => [$sharedPercent, 100 - $sharedPercent],
@@ -179,7 +179,7 @@ class CompanyController extends AbstractController
                     'label' => 'In Maintenance',
                     'backgroundColor' => [
                         'red',
-                        'green'
+                        '#3EDE7E'
                     ],
                     'data' => [$kaputPercent, 100 - $kaputPercent],
                     "hoverOffset" => 4
@@ -251,7 +251,12 @@ class CompanyController extends AbstractController
                         'rgba(75, 192, 192, 0.8)',
                         'rgba(54, 162, 235, 0.8)',
                         'rgba(153, 102, 255, 0.8)',
-                        'rgba(201, 203, 207, 0.8)'
+                        'rgba(201, 203, 207, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 159, 64, 0.8)',
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(201, 203, 207, 0.8)',
                     ],
                     'data' => [
                         count($reservationRepository->findBy(['rentedDate' => new DateTime()])),
