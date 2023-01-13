@@ -121,7 +121,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/reserve/{vehicle}', name: 'app_show')]
-    public function showOrder(Request $request, Vehicle $vehicle, ReservationRepository $reservationRepository, HereMapAPI $hereMapAPI): Response
+    public function showOrder(Request $request, Vehicle $vehicle, ReservationRepository $reservationRepository, HereMapAPI $hereMapAPI, VehicleRepository $vehicleRepository): Response
     {
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
@@ -143,6 +143,9 @@ class HomeController extends AbstractController
             }
 
             $reservationRepository->save($reservation, true);
+            $vehicle->setIsAvailable(false);
+            $vehicleRepository->save($vehicle, true);
+
             $session->remove('vehicleRentDateStart');
             $session->remove('vehicleRentEndDate');
             $this->addFlash('success', 'Your order has been registered');
