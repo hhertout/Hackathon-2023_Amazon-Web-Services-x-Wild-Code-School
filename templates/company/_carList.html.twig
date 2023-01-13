@@ -19,7 +19,7 @@
 					<td>{{ vehicle.immatriculation|upper }}</td>
 					<td>{{ vehicle.model }}</td>
 					<td>{{ vehicle.kilometers|number_format(-3, '.') }}</td>
-					{% if vehicle.isAvailable == 1  %}
+					{% if vehicle.isSharedNow == 0  %}
 						<td>
 							<div class="badge bg-success">Vehicle available</div>
 						</td>
@@ -29,9 +29,9 @@
 							</div>
 						</td>
 					{% endif  %}
-					{% if vehicle.isShared == 1 %}
+					{% if vehicle.isSharedNow == 1 %}
 						<td>
-							<div class="badge bg-success">Vehicle shared</div>
+							<div class="badge bg-info">Vehicle shared</div>
 						</td>
 					{% else  %}
 						<td>
