@@ -55,7 +55,14 @@
 		<div class="container bg-light text-dark rounded p-2">
 			<h1 class="h1 text-center my-5">Your fleet</h1>
 			<div class="d-flex justify-content-end">
-				<a class="btn btn-secondary text-light fw-bold" href="{{ path('app_vehicle_new', {'company' : company.id}) }}">Add a vehicle</a>
+				<a class="btn btn-secondary text-light fw-bold" href="{{ path('app_vehicle_new', {'company' : company.id}) }}">
+					<div class="d-flex align-items-center">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewbox="0 0 16 16">
+							<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+						</svg>
+						<span class="mx-2">Add a vehicle</span>
+					</div>
+				</a>
 			</div>
 			<div class="p-2 bloc-funnel">
 				<div class="d-flex justify-content-center gap-1 my-3">
