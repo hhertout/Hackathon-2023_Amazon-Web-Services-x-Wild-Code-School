@@ -5,6 +5,14 @@
 {% endblock %}
 
 {% block content %}
+	{% for category, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ category }}">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endfor %}
+
 	{{ form_start(searchForm) }}
 	<div id="searchGrid" class="container text-dark bg-white rounded-2 mt-5 py-3 justify-content-around">
 		<div id="searchArrow" class="align-self-center text-end">
