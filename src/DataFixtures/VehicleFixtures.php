@@ -87,6 +87,7 @@ class VehicleFixtures extends Fixture
             $vehicle->setCompany($this->getReference('company_' . $faker->numberBetween(0, 5)));
             $vehicle->setType('Urban');
             $vehicle->setGearbox('Manual');
+            $vehicle->setIsShared((bool)rand(0, 1));
             $vehicle->setIsAvailable((bool)rand(0, 1));
             $this->addReference('Clio_' . $i, $vehicle);
 
@@ -108,7 +109,8 @@ class VehicleFixtures extends Fixture
         $vehicle->setType('Utility');
         $vehicle->setGearbox('Automatic');
         $vehicle->setIsAvailable((bool)rand(0, 1));
-        $vehicle->setCompany($this->getReference('company_' . '8'));
+        $vehicle->setIsKaput(true);
+        $vehicle->setCompany($this->getReference('company_' . '1'));
         $this->addReference('Kangoo_' . 101, $vehicle);
 
         $manager->persist($vehicle);

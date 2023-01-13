@@ -9,7 +9,8 @@
 
 #cardGrid {
     display: grid;
-    grid-template-areas: "a b b"
+    grid-template-areas:
+        "a b b"
         "c c c"
         "d f g"
         "e e e";
@@ -48,10 +49,10 @@
 
 #searchGrid {
     display: grid;
-    grid-template-areas: "a b c d e f g h";
+    grid-template-areas: "a b c d e f s h g";
 
     grid-template-rows: 1fr;
-    grid-template-columns: 3rem 15rem 8rem 8rem 8rem 8rem 15rem 10rem;
+    grid-template-columns: 3rem 14rem 8rem 7rem 7rem 6rem 7rem 10rem 10rem;
 }
 
 #searchArrow {
@@ -80,11 +81,14 @@
 
 #searchButton {
     grid-area: g;
-    margin-block-start: 1.7rem;
 }
 
 #searchClear {
     grid-area: h;
+}
+
+#searchShare {
+    grid-area: s;
 }
 
 .iconSearch {
@@ -96,20 +100,37 @@
 @media screen and (max-width: 1200px) {
     #searchGrid {
         display: grid;
-        grid-template-areas: "a b c d e f"
-                             "g g g h h h";
+        grid-template-areas: "a b c d e f s"
+                             "h h h g g g g";
 
         grid-template-rows: 1fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: .5rem 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    #searchArrow svg {
+        display: none;
     }
 
     #searchDate {
-        margin-inline-end: 2rem;
+        margin-inline: 1rem;
     }
 
-    #searchButton {
-        margin-block-start: 1.8rem;
+    #searchBrand {
+        align-self: end;
+        margin-inline-end: .2rem;
     }
+    #searchEnergy {
+        align-self: end;
+        margin-inline-end: .2rem;
+    }
+    #searchGear {
+        align-self: end;
+        margin-inline-end: .2rem;
+    }
+    #searchSeat {
+        align-self: end;
+    }
+
 }
 
 
@@ -124,6 +145,7 @@
             "d"
             "e"
             "f"
+            "s"
             "g"
             "h";
 
@@ -155,6 +177,10 @@
     }
 
     #searchSeat {
+        margin-block-start: 1rem;
+    }
+
+    #searchShare {
         margin-block-start: 1rem;
     }
 }

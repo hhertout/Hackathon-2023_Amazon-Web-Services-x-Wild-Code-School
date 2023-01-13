@@ -140,6 +140,7 @@ class HomeController extends AbstractController
             $reservation->setLongitude($hereMapAPI->geolocateViaAddress($destination)['lng']);
             if ($user->getCompany() !== $vehicle->getCompany()) {
                 $reservation->setOwner($vehicle->getCompany());
+                $vehicle->setIsShared(true);
             }
 
             $reservationRepository->save($reservation, true);
