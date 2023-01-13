@@ -34,61 +34,74 @@
 			</a>
 		</div>
 	</div>
-	<div class="container bg-light text-dark mt-3 p-4 rounded">
-
-		<div class="d-flex justify-content-between align-items-center gap-3">
-			<h1 class="h1">Your reservation</h1>
-			<span class="badge bg-primary fs-6">Reference n°{{ reservation.id }}</span>
-		</div>
-
-		<p class="badge fs-6 bg-tertiary mx-3">Destination :{{ reservation.destination }}</p>
-
-		<div class="bloc-infos mx-3">
-			<div class="date mx-5">
-				<p>
-					<span class="fw-bold">Departure :</span>
-					<span class="fs-5">{{ reservation.rentedDate|date("m/d/Y H:i") }}</span>
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right mx-3" viewbox="0 0 16 16">
-						<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-					</svg>
-					<span class="fw-bold">Return :</span>
-					<span class="fs-5">{{ reservation.returnDate|date("m/d/Y H:i") }}</span>
-				</p>
+	<div class="container bg-light text-dark mt-3 p-0 rounded">
+		<div class="row">
+			<div class="col-lg-3">
+				<img src="{{ asset('build/images/carroad.jpg') }} " alt="Car on a Road" class="w-100 h-100" style="object-fit: cover">
 			</div>
+			<div class="col-lg-8">
+				<div class="p-4">
+					<div class="d-flex justify-content-between align-items-center gap-3">
+						<h1 class="h1">Your reservation</h1>
+						<span class="badge bg-primary fs-6">Reference n°{{ reservation.id }}</span>
+					</div>
 
-			<article>
-				<h2>Your vehicle :</h2>
-				<div class="mx-3">
-					<div>
-						<span class="fw-bold">Id :</span>
-						<span>{{ vehicle.id }}</span>
-					</div>
-					<div>
-						<span class="fw-bold">Brand :</span>
-						<span>{{ vehicle.brand }}</span>
-					</div>
-					<div>
-						<span class="fw-bold">Model :</span>
-						<span>{{ vehicle.model }}</span>
-					</div>
-					<div>
-						<span class="fw-bold">Energy :</span>
-						<span>{{ vehicle.energy }}</span>
-					</div>
-					<div>
-						<span class="fw-bold">Immatriculation :</span>
-						<span>{{ vehicle.immatriculation }}</span>
-					</div>
-					<div>
-						<span class="fw-bold">Type :</span>
-						<span>{{ vehicle.type }}</span>
-					</div>
-					<div>
-						<span class="fw-bold">Gearbox :</span>
-						<span>{{ vehicle.gearbox }}</span>
+					<p class="badge fs-6 bg-tertiary mx-3">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-car-front-fill" viewbox="0 0 16 16">
+							<path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17 1.247 0 3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
+						</svg>
+						<span class="ms-2">Destination :</span>
+						{{ reservation.destination }}</p>
+
+					<div class="bloc-infos mx-3">
+						<div class="date mx-5">
+							<p>
+								<span class="fw-bold">Departure :</span>
+								<span class="fs-5">{{ reservation.rentedDate|date("m/d/Y H:i") }}</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right mx-3" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+								</svg>
+								<span class="fw-bold">Return :</span>
+								<span class="fs-5">{{ reservation.returnDate|date("m/d/Y H:i") }}</span>
+							</p>
+						</div>
+
+						<article>
+							<h2>Your vehicle :</h2>
+							<div class="mx-3">
+								<div>
+									<span class="fw-bold">Id :</span>
+									<span>{{ vehicle.id }}</span>
+								</div>
+								<div>
+									<span class="fw-bold">Brand :</span>
+									<span>{{ vehicle.brand }}</span>
+								</div>
+								<div>
+									<span class="fw-bold">Model :</span>
+									<span>{{ vehicle.model }}</span>
+								</div>
+								<div>
+									<span class="fw-bold">Energy :</span>
+									<span>{{ vehicle.energy }}</span>
+								</div>
+								<div>
+									<span class="fw-bold">Immatriculation :</span>
+									<span>{{ vehicle.immatriculation }}</span>
+								</div>
+								<div>
+									<span class="fw-bold">Type :</span>
+									<span>{{ vehicle.type }}</span>
+								</div>
+								<div>
+									<span class="fw-bold">Gearbox :</span>
+									<span>{{ vehicle.gearbox }}</span>
+								</div>
+							</div>
+						</article>
 					</div>
 				</div>
-			</article>
+			</div>
 		</div>
 	</div>
 {% endblock %}
