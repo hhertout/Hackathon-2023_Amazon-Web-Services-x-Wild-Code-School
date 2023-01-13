@@ -154,7 +154,7 @@
 				{% endif %}
 				{% if otherNearCompagniesVehicles is not empty %}
 					{% for otherNearCompagniesVehicle in otherNearCompagniesVehicles %}
-						<div class="card cardHome bg-primary text-white me-2 mb-4">
+						<div class="card cardHome bg-white text-dark border border-5 border-secondary  me-2 mb-4">
 							<div id="cardGrid" class="container text-center">
 								<div id="cardCar">
 									<svg xmlns="http://www.w3.org/2000/svg" width="99" height="99" fill="currentColor" class="bi bi-car-front-fill" viewbox="0 0 16 16">
@@ -162,6 +162,7 @@
 									</svg>
 								</div>
 								<div id="cardBrand" class="text-center fs-4 fw-bold">
+								<div class=" badge text-secondary fw-bold m-0 p-2 shadow-sm border border-3 border-secondary">SHARED</div>
 									{{ otherNearCompagniesVehicle.brand }}
 									{{ otherNearCompagniesVehicle.model }}
 								</div>
@@ -169,7 +170,7 @@
 									{{otherNearCompagniesVehicle.company.name}}
 								</div>
 								<div id="cardEnergy">
-									<img class="mt-2" src="{{ asset('build/images/icons/engine.svg') }}" alt="">
+									<img class="mt-2 sharicon" src="{{ asset('build/images/icons/engine.svg') }}" alt="">
 									<p class="mt-3 fs-5">{{otherNearCompagniesVehicle.energy}}</p>
 								</div>
 								<div id="cardGear">
