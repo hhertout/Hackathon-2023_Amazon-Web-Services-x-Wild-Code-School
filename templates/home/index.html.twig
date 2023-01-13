@@ -192,7 +192,16 @@
 				</div>
 			{% endif %}
 			{% if vehicles is empty and otherNearCompagniesVehicles is empty %}
+				{% if init %}
+					<div class="container rounded d-flex flex-column justify-content-center align-items-center mt-5">
+
+					<p class="text-center fs-3 fw-bold">{{init}} !</p>
+					<img class="w-50" src="{{ asset('build/images/logos/logoACS-white.png') }}" alt="ACS logo">
+					</div>
+
+				{% else %}
 				<p class="mt-5 text-center">No vehicle found</p>
+				{% endif %}
 			{% endif %}
 		</div>
 	</div>

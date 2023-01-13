@@ -110,13 +110,12 @@ class HomeController extends AbstractController
                 'gearbox' => $gearbox ?? $gearboxArray,
                 'nbDoor' => $doorNumber ?? $doorArray
             ]);
-        } else {
-            $vehicles = $vehicleRepository->findBy(['company' => $user->getCompany(), 'isAvailable' => true,]);
         }
         
         return $this->render('home/index.html.twig', [
             'searchForm' => $form->createView(),
-            'vehicles' => $vehicles,
+            'vehicles' => $vehicles ?? [],
+            'init' => 'Enter dates to get starded',
             'otherNearCompagniesVehicles' => $otherNearCompagniesVehicles ?? []
         ]);
     }
