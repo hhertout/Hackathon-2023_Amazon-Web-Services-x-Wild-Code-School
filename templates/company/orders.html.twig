@@ -59,7 +59,7 @@
 			<table class="w-100 text-center">
 				<thead class="border-bottom">
 					<tr class="bg-primary text-light p-2">
-						<th class="p-2">Immatriculation</th>
+						<th class="p-2">Plate number</th>
 						<th class="p-2">Model</th>
 						<th class="p-2">Ordered by</th>
 						<th class="p-2">Company</th>
@@ -70,7 +70,7 @@
 				<tbody>
 					{% for reservation in reservations %}
 						<tr>
-							<td>{{reservation.vehicle.immatriculation}}</td>
+							<td>{{reservation.vehicle.immatriculation|upper }}</td>
 							<td>{{reservation.vehicle.model}}</td>
 							<td>{{reservation.user.firstname ~ ' ' ~ reservation.user.lastname}}</td>
 							<td>{{reservation.user.company.name}}</td>

@@ -52,20 +52,20 @@
 			</a>
 		</div>
 
-        <div class="container bg-light text-dark rounded p-2">
-		<h1 class="h1 text-center my-5">Your fleet</h1>
-		<div class="d-flex justify-content-end">
-			<a class="btn btn-secondary text-light fw-bold" href="{{ path('app_vehicle_new', {'company' : company.id}) }}">Add a vehicle</a>
+		<div class="container bg-light text-dark rounded p-2">
+			<h1 class="h1 text-center my-5">Your fleet</h1>
+			<div class="d-flex justify-content-end">
+				<a class="btn btn-secondary text-light fw-bold" href="{{ path('app_vehicle_new', {'company' : company.id}) }}">Add a vehicle</a>
+			</div>
+			<div class="p-2 bloc-funnel">
+				<div class="d-flex justify-content-center gap-1 my-3">
+					<a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn bg-secondary">Show All</a>
+					<a href={{ path('app_company_fleet_available', {'company': company.id} ) }} class="btn bg-secondary">Show available vehicles</a>
+					<a href={{ path('app_company_fleet_unavailable', {'company': company.id} ) }} class="btn bg-secondary">Show unavailable vehicles</a>
+					<a href={{ path('app_company_fleet_sharable', {'company': company.id} ) }} class="btn bg-secondary">Show shared vehicles</a>
+					<a href={{ path('app_company_fleet_notsharable', {'company': company.id} ) }} class="btn bg-secondary active">Show private vehicles</a>
+				</div>
+				{% include './company/_carList.html.twig' %}
+			</div>
 		</div>
-		<div class="p-2 bloc-funnel">
-        <div class="d-flex justify-content-center gap-1 my-3">
-            <a href="{{ path('app_company_fleet', {'company': company.id}) }}" class="btn bg-secondary">Show All</a>
-            <a href={{ path('app_company_fleet_available', {'company': company.id}) }} class="btn bg-secondary active">Show your vehicles available</a>
-			<a href={{ path('app_company_fleet_unavailable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles unavailable</a>
-            <a href={{ path('app_company_fleet_sharable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles rentable</a>
-			<a href={{ path('app_company_fleet_notsharable', {'company': company.id}) }} class="btn bg-secondary">Show your vehicles not rentable</a>
-        </div>
-            {% include './company/_carList.html.twig' %}
-        </div>
-	</div>
-{% endblock %}
+	{% endblock %}

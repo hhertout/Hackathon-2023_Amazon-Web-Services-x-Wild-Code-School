@@ -46,6 +46,7 @@ class HomeController extends AbstractController
 
         $otherNearCompagnies = [];
         $otherNearCompagniesVehicles = [];
+        $vehicles = [];
         if ($form->isSubmitted()) {
             $forIsSubmit = true;
             $carId = [];
@@ -113,7 +114,7 @@ class HomeController extends AbstractController
                 'nbDoor' => $doorNumber ?? $doorArray
             ]);
         }
-        
+
         return $this->render('home/index.html.twig', [
             'searchForm' => $form->createView(),
             'vehicles' => $vehicles ?? [],
