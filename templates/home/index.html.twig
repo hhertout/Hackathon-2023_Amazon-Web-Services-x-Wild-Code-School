@@ -162,7 +162,7 @@
 									</svg>
 								</div>
 								<div id="cardBrand" class="text-center fs-4 fw-bold">
-								<div class=" badge text-secondary fw-bold m-0 p-2 shadow-sm border border-3 border-secondary">SHARABLE</div>
+									<div class=" badge text-secondary fw-bold m-0 p-2 shadow-sm border border-3 border-secondary">SHARABLE</div>
 									{{ otherNearCompagniesVehicle.brand }}
 									{{ otherNearCompagniesVehicle.model }}
 								</div>
@@ -192,14 +192,14 @@
 				</div>
 			{% endif %}
 			{% if vehicles is empty and otherNearCompagniesVehicles is empty %}
-					<div class="container rounded d-flex flex-column justify-content-center align-items-center mt-5">
+				<div class="container rounded d-flex flex-column justify-content-center align-items-center mt-5">
 					{% if formIsSubmit == false %}
-					<p class="text-center fs-3 fw-bold">Enter dates to Start !</p>
-					<img class="w-50" src="{{ asset('build/images/logos/logoACS-white.png') }}" alt="ACS logo">
+						<p class="text-center fs-3 fw-bold">Enter dates to Start !</p>
+						<img class="w-50" src="{{ asset('build/images/logos/logoACS-white.png') }}" alt="ACS logo">
 					</div>
 
 				{% else %}
-				<p class="mt-5 text-center">No vehicle found</p>
+					<p class="mt-5 text-center">No vehicle found</p>
 				{% endif %}
 			{% endif %}
 		</div>
