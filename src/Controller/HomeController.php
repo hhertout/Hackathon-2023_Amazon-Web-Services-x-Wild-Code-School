@@ -115,7 +115,8 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'searchForm' => $form->createView(),
-            'vehicles' => $vehicles,
+            'vehicles' => $vehicles ?? [],
+            'init' => 'Enter dates to get starded',
             'otherNearCompagniesVehicles' => $otherNearCompagniesVehicles ?? []
         ]);
     }
