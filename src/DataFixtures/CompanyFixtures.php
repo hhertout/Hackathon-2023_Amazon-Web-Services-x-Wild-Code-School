@@ -11,6 +11,7 @@ use App\Service\HereMapAPI;
 class CompanyFixtures extends Fixture
 {
     public const NB_COMPANY = 6;
+    public const COMPANY_NAME = ['Facebook', 'Google', 'Amazon', 'Uber', 'Total', ''];
 
     public function __construct(private HereMapAPI $hereMapAPI)
     {
