@@ -56,6 +56,7 @@
 				{{company.name}}
 				orders
 			</h1>
+			{% if reservations is not empty %}
 			<table class="w-100 text-center">
 				<thead class="border-bottom">
 					<tr class="bg-primary text-light p-2">
@@ -80,6 +81,9 @@
 					{% endfor %}
 				</tbody>
 			</table>
+			{% else %}
+			<p class="w-100 text-center fs-3 fw-bold">No order yet</p>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

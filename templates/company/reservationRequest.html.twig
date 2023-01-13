@@ -53,6 +53,7 @@
 		</div>
 		<div class="bg-light text-dark rounded-3 p-2">
 			<h1 class="h1 text-center my-5">Waiting orders</h1>
+			{% if reservations is not empty %}
 			<table class="w-100 text-center">
 				<thead class="border-bottom">
 					<tr class="bg-primary text-light p-2">
@@ -91,6 +92,9 @@
 					{% endfor %}
 				</tbody>
 			</table>
+			{% else %}
+			<p class="w-100 text-center fw-bold fs-4">No request yet</p>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

@@ -70,7 +70,7 @@
 					<a href={{ path('app_company_fleet_available', {'company': company.id} ) }} class="btn bg-secondary">Show available vehicles</a>
 					<a href={{ path('app_company_fleet_unavailable', {'company': company.id} ) }} class="btn bg-secondary">Show unavailable vehicles</a>
 					<a href={{ path('app_company_fleet_sharable', {'company': company.id} ) }} class="btn bg-secondary">Show shared vehicles</a>
-					<a href={{ path('app_company_fleet_notsharable', {'company': company.id} ) }} class="btn bg-secondary active">Show private vehicles</a>
+					<a href={{ path('app_company_fleet_notsharable', {'company': company.id} ) }} class="btn bg-secondary">Show private vehicles</a>
 				</div>
 				{% include './company/_carList.html.twig' %}
 			</div>
