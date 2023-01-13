@@ -36,6 +36,7 @@ class HomeController extends AbstractController
         // IL FAUT UTILISER IS GRANTED
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
+        $forIsSubmit = false;
         if ($user === null) {
             return $this->redirectToRoute('app_login');
         }
@@ -46,6 +47,7 @@ class HomeController extends AbstractController
         $otherNearCompagnies = [];
         $otherNearCompagniesVehicles = [];
         if ($form->isSubmitted()) {
+            $forIsSubmit = true;
             $carId = [];
             $energyArray = ['Diesel', 'Electric', 'Gasoline'];
             $brandArray = ['Peugeot', 'Citroën', 'Renault', 'Volkswagen', 'BMW', 'Mercedes', 'Hyundai', 'Audi', 'Opel', 'Toyota', 'Ford', 'Honda', 'DS'];
@@ -115,7 +117,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'searchForm' => $form->createView(),
             'vehicles' => $vehicles ?? [],
-            'init' => 'Enter dates to get starded',
+            'formIsSubmit' => $forIsSubmit,
             'otherNearCompagniesVehicles' => $otherNearCompagniesVehicles ?? []
         ]);
     }
