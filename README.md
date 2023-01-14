@@ -1,10 +1,9 @@
 # Hackathon 2023 - Amazon Web Services x Wild Code School 
 <img src="https://www.oceanet-technology.com/wp-content/uploads/2022/08/24/aws-logo-rgb.jpg" />
 
-This project was made in 48H in the suggest of Amazon Web Services.
-Finalist project
+Finalist project, made in 48H in the suggest of Amazon Web Services.
 
-### The subject was: 
+### The subject : 
 > You will have to develop a fleet management application with three levels of users (the user who can rent/book a vehicle, the community/company that offers vehicles for rent/reservation and the application administrator).
 
 > The user who makes a reservation request must have access to the vehicle information (mileage, technical data, availability dates...).
